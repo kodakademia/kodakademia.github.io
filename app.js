@@ -14,6 +14,12 @@ const $=s=>document.querySelector(s);
 const key='kodakademia-standalone-v2';
 let state={done:[],bookmarks:[],quiz:{},last:null};
 try{state={...state,...JSON.parse(localStorage.getItem('kodakademia-standalone-v1')||'{}'),...JSON.parse(localStorage.getItem(key)||'{}')}}catch{}
+// A korábbi JavaScript-kurzus Node-leckéinek haladását és könyvjelzőit megőrizzük.
+const movedLesson=k=>typeof k==='string'?k.replace(/^javascript\/(nodejs-\d+)$/,'nodejs/$1'):k;
+state.done=[...new Set((state.done||[]).map(movedLesson))];
+state.bookmarks=[...new Set((state.bookmarks||[]).map(movedLesson))];
+state.last=movedLesson(state.last);
+state.quiz=Object.fromEntries(Object.entries(state.quiz||{}).map(([k,v])=>[movedLesson(k),v]));
 const save=()=>{try{localStorage.setItem(key,JSON.stringify(state))}catch{};updateSidebar()};
 const esc=v=>String(v??'').replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
 const courseOf=s=>COURSES.find(c=>c.slug===s);
@@ -58,7 +64,7 @@ app.innerHTML=`<div class="breadcrumbs"><a href="#/courses">Tananyagok</a> / ${e
 <section class="detail-head"><span class="course-icon">${t.icon}</span><div><span class="pill">Kurzuság • ${list.length} kurzus • ${lessons} lecke</span><h1>${esc(t.title)}</h1><p class="muted" style="margin:0">${esc(t.tagline||t.desc)}</p><p class="muted" style="margin:9px 0">${doneCount} / ${lessons} lecke elvégezve</p>${meter(lessons?Math.round(100*doneCount/lessons):0)}</div></section>
 <div class="setup-box"><h3>🧭 Hogyan tanulj ebben az ágban?</h3><p>${esc(t.desc)}</p><p class="muted">Haladj a kurzusok sorrendjében, és minden leckénél oldd meg a gyakorlatot. Az ág kurzusaiból bármikor kérdezhetsz az <a href="#/ai" style="color:var(--cyan)">AI tanulótársnál</a>.</p></div>
 <div class="section-head"><div><h2>Kurzusok ebben az ágban</h2><p>Kattints a kurzusra a teljes leckesorhoz.</p></div></div>
-<div class="grid-courses">${list.map(courseCard).join('')}</div>
+${id==='web'?`<div class="section-head"><h2>Frontend</h2></div><div class="grid-courses">${list.filter(c=>!['nodejs','xampp'].includes(c.slug)).map(courseCard).join('')}</div><div class="section-head"><h2>Backend</h2></div><div class="grid-courses">${list.filter(c=>['nodejs','xampp'].includes(c.slug)).map(courseCard).join('')}</div>`:`<div class="grid-courses">${list.map(courseCard).join('')}</div>`}
 <div class="section-head"><div><h2>Leckék sorrendben</h2><p>Ez a javasolt haladási sorrend az ágon belül.</p></div></div>
 <div class="modules">${list.map(c=>`<section class="module"><div class="module-header"><h3>${c.icon} ${esc(courseTitle(c))}</h3><span class="pill">${c.lessons.length} lecke • ${pct(c)}%</span></div>${c.lessons.slice(0,8).map(l=>`<a class="lesson-link" href="#/lesson/${c.slug}/${l.id}"><span class="tick ${state.done.includes(lkey(c,l))?'done':''}">${state.done.includes(lkey(c,l))?'✓':'○'}</span><span>${esc(l.title)}</span><small>◷ ${l.minutes} perc</small></a>`).join('')}${c.lessons.length>8?`<a class="lesson-link" href="#/course/${c.slug}"><span class="tick">…</span><span>Még ${c.lessons.length-8} lecke a kurzusban</span><small>Megnyitás →</small></a>`:''}</section>`).join('')}</div>`;}
 
@@ -132,7 +138,7 @@ const seed=window.KA_AI_SEED;if(seed){window.KA_AI_SEED='';setTimeout(()=>ask(se
 function notFound(){nav('');breadcrumb('Nem található');app.innerHTML='<h1 class="page-title">Ez az oldal nem található</h1><a class="btn btn-primary" href="#/">Vissza a főoldalra</a>'}
 function copy(t){if(navigator.clipboard&&window.isSecureContext){navigator.clipboard.writeText(t).then(()=>toast('Kód kimásolva')).catch(()=>fallbackCopy(t))}else fallbackCopy(t)}
 function fallbackCopy(t){let el=document.createElement('textarea');el.value=t;document.body.appendChild(el);el.select();try{document.execCommand('copy');toast('Kód kimásolva')}catch{toast('Jelöld ki és másold a kódot!')}el.remove()}
-function route(){let parts=decodeURIComponent(location.hash.replace(/^#\/?/,'')).split('/').filter(Boolean);if(!parts.length)home();else if(parts[0]==='courses')catalog();else if(parts[0]==='track')trackPage(parts[1]);else if(parts[0]==='course')detail(parts[1]);else if(parts[0]==='lesson')lesson(parts[1],parts[2]);else if(parts[0]==='path')path();else if(parts[0]==='bookmarks')bookmarks();else if(parts[0]==='playground')playground();else if(parts[0]==='ai')ai();else notFound();window.scrollTo({top:0,behavior:'instant'});$('#sidebar').classList.remove('open');}
+function route(){let parts=decodeURIComponent(location.hash.replace(/^#\/?/,'')).split('/').filter(Boolean);if(parts[0]==='lesson'&&parts[1]==='javascript'&&/^nodejs-\d+$/.test(parts[2]||'')){location.replace('#/lesson/nodejs/'+parts[2]);return}if(!parts.length)home();else if(parts[0]==='courses')catalog();else if(parts[0]==='track')trackPage(parts[1]);else if(parts[0]==='course')detail(parts[1]);else if(parts[0]==='lesson')lesson(parts[1],parts[2]);else if(parts[0]==='path')path();else if(parts[0]==='bookmarks')bookmarks();else if(parts[0]==='playground')playground();else if(parts[0]==='ai')ai();else notFound();window.scrollTo({top:0,behavior:'instant'});$('#sidebar').classList.remove('open');}
 $('#menuBtn').addEventListener('click',()=>$('#sidebar').classList.toggle('open'));
 document.addEventListener('click',e=>{const a=e.target.closest('[data-ask]');if(a){e.preventDefault();window.KA_AI_SEED=a.dataset.ask;if(location.hash==='#/ai')ai();else location.hash='#/ai'}});
 document.addEventListener('click',e=>{let b=e.target.closest('[data-open-branch]');if(!b)return;e.preventDefault();trackFilter=b.dataset.openBranch;if(location.hash==='#/courses')catalog();else location.hash='#/courses';});
