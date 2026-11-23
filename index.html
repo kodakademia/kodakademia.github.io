@@ -5,9 +5,20 @@
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="description" content="kodakademia: magyar nyelvű programozásoktatás kezdőknek és haladóknak, gyakorlatokkal és kvízekkel." />
   <title>kodakademia – Tanulj programozni magyarul</title>
-  <link rel="stylesheet" href="styles.css" />
-  <script src="data.js" defer></script>
-  <script src="app.js" defer></script>
+  <link rel="stylesheet" href="styles.css?v=2026-11-23.5" />
+  <script src="data.js?v=2026-11-23.5" defer></script>
+  <script src="data/lib.js?v=2026-11-23.5" defer></script>
+  <script src="data/backend.js?v=2026-11-23.5" defer></script>
+  <script src="data/python.js?v=2026-11-23.5" defer></script>
+  <script src="data/php.js?v=2026-11-23.5" defer></script>
+  <script src="data/security.js?v=2026-11-23.5" defer></script>
+  <script src="data/web.js?v=2026-11-23.5" defer></script>
+  <script src="data/bulk-web.js?v=2026-11-23.5" defer></script>
+  <script src="data/bulk-web2.js?v=2026-11-23.5" defer></script>
+  <script src="data/bulk-web3.js?v=2026-11-23.5" defer></script>
+  <script src="data/bulk-python.js?v=2026-11-23.5" defer></script>
+  <script src="data/bulk-php-sec.js?v=2026-11-23.5" defer></script>
+  <script src="app.js?v=2026-11-23.5" defer></script>
 </head>
 <body>
   <div class="app-shell">
@@ -20,8 +31,17 @@
         <a href="#/path" data-nav="path"><span>◇</span> Tanulási útvonal</a>
         <a href="#/bookmarks" data-nav="bookmarks"><span>☆</span> Könyvjelzők</a>
         <a href="#/playground" data-nav="playground"><span>⌘</span> Kódjátszótér</a>
+        <a href="#/ai" data-nav="ai"><span>🤖</span> AI tanulótárs</a>
       </nav>
-      <div class="side-heading">KURZUSOK</div>
+      <div class="side-heading">TANULÁSI ÁGAK</div>
+      <nav aria-label="Kurzuságak">
+        <a href="#/track/web" data-nav="track-web"><span>🌐</span> Webfejlesztés</a>
+        <a href="#/track/python" data-nav="track-python"><span>🐍</span> Python</a>
+        <a href="#/track/php" data-nav="track-php"><span>🐘</span> PHP</a>
+        <a href="#/track/security" data-nav="track-security"><span>🛡️</span> Etikus hackelés</a>
+        <a href="#/track/desktop" data-nav="track-desktop"><span>🖥️</span> Asztali programok</a>
+      </nav>
+      <div class="side-heading">MINDEN KURZUS</div>
       <nav id="sideCourses" class="course-nav" aria-label="Kurzusok"></nav>
       <div class="side-footer"><div class="mini-progress-label"><span>Összes haladás</span><strong id="globalPercent">0%</strong></div><div class="meter"><span id="globalBar"></span></div><p>Az előrehaladás ezen a készüléken mentődik.</p></div>
     </aside>

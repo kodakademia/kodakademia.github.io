@@ -1,0 +1,2308 @@
+[
+  {
+    "slug": "alapok",
+    "title": "Kezdj a nulláról",
+    "icon": "🚀",
+    "category": "Alapok",
+    "description": "A számítógépektől az első programig, teljesen kezdőknek.",
+    "prereqs": [],
+    "setup": "Szükséges: VS Code (code.visualstudio.com), egy böngésző, opcionálisan Git és Python.",
+    "runtime": "local",
+    "lessons": [
+      {
+        "id": "alapok-1",
+        "title": "Mi a program és a kód?",
+        "level": "Kezdő",
+        "minutes": 18,
+        "overview": "A program a számítógép számára megfogalmazott, pontos utasítások sorozata. A gép nem találgatja ki a szándékunkat: az általunk leírt szabályokat követi. A programozás lényege ezért először a probléma kisebb lépésekre bontása.",
+        "concepts": [
+          "Algoritmus: véges, egyértelmű lépéssorozat egy feladat megoldására.",
+          "Kód: az algoritmus megfogalmazása egy adott nyelven.",
+          "Változó: névvel ellátott tároló; egy értéket később újra felhasználhatunk.",
+          "Feltétel: különböző döntési ágak; ciklus: műveletek ismétlése."
+        ],
+        "code": "nev = input(\"Mi a neved? \")\nif nev:\n    print(\"Szia, \" + nev + \"!\")\nelse:\n    print(\"Nem adtál meg nevet.\")",
+        "exercise": [
+          "Írd le 6 lépésben, hogyan készítenél szendvicset.",
+          "Adj hozzá egy feltételt (ha nincs kenyér...) és egy ismétlést."
+        ],
+        "quiz": {
+          "question": "Melyik állítás írja le legjobban az algoritmust?",
+          "options": [
+            "Egy számítógép alkatrésze",
+            "Egyértelmű lépések sorozata",
+            "Csak egy weboldal",
+            "A monitor neve"
+          ],
+          "answer": 1,
+          "explain": "Az algoritmus a megoldás pontos lépéseit rögzíti, nem függ egyetlen nyelvtől."
+        }
+      },
+      {
+        "id": "alapok-2",
+        "title": "Fájlok, mappák és kiterjesztések",
+        "level": "Kezdő",
+        "minutes": 22,
+        "overview": "Minden kód fájlban tárolódik, a projekt pedig gyakran sok kapcsolódó fájlból áll. A fájlkiterjesztés segít megérteni a tartalmát, például .html, .css, .js vagy .py.",
+        "concepts": [
+          "A relatív útvonal az aktuális mappából indul; az abszolút útvonal a fájlrendszer gyökerétől.",
+          "Egy projekt különítse el a forráskódot, képeket és dokumentációt.",
+          "A fájlnevek legyenek rövidek és következetesek; a kis- és nagybetű eltérhet.",
+          "A README.md elmondja, hogyan indítható és használható a projekt."
+        ],
+        "code": "projekt/\n  index.html\n  styles.css\n  app.js\n  images/\n    logo.png\n  README.md",
+        "exercise": [
+          "Hozz létre egy kodakademia-projekt nevű mappát, benne index.html és README.md fájllal.",
+          "Rajzold le, melyik fájl mire szolgál."
+        ],
+        "quiz": {
+          "question": "Mit jelent a .py kiterjesztés?",
+          "options": [
+            "Általában Python forrásfájl",
+            "Kizárólag kép",
+            "Titkosított fájl",
+            "Webcím"
+          ],
+          "answer": 0,
+          "explain": "A .py fájlok jellemzően Python-kódot tartalmaznak."
+        }
+      },
+      {
+        "id": "alapok-3",
+        "title": "VS Code és a terminál",
+        "level": "Középhaladó",
+        "minutes": 26,
+        "overview": "A kódszerkesztő segít írni és áttekinteni a programot; a terminál szöveges parancsokat hajt végre. Fontos különbség: attól, hogy kódot írunk a szerkesztőben, az még nem feltétlenül fut.",
+        "concepts": [
+          "A VS Code-ban mappát nyiss meg, ne csak egyetlen fájlt.",
+          "A terminálban a pwd (Windows PowerShell: pwd) mutatja az aktuális mappát.",
+          "Az ls (PowerShellben is) listázza a fájlokat; cd mappa belép egy mappába.",
+          "Hiba esetén először az üzenet pontos szövegét olvasd el."
+        ],
+        "code": "pwd\nls\nmkdir gyakorlás\ncd gyakorlás\n# Python telepítése után:\npython --version",
+        "exercise": [
+          "Telepítsd a VS Code-ot, és nyisd meg benne a gyakorló mappádat.",
+          "Terminálban hozz létre egy teszt mappát, majd lépj be."
+        ],
+        "quiz": {
+          "question": "Mire való a cd parancs?",
+          "options": [
+            "Fájlt töröl",
+            "Mappát vált",
+            "Böngészőt indít",
+            "Képet szerkeszt"
+          ],
+          "answer": 1,
+          "explain": "A cd (change directory) az aktuális munkakönyvtárat változtatja meg."
+        }
+      },
+      {
+        "id": "alapok-4",
+        "title": "Hogyan működik a web?",
+        "level": "Középhaladó",
+        "minutes": 30,
+        "overview": "Amikor megnyitsz egy webcímet, a böngésző általában egy szerverhez fordul, és HTTP-válaszként kap adatokat. A HTML a tartalmat, a CSS a megjelenést, a JavaScript a viselkedést határozza meg.",
+        "concepts": [
+          "DNS: a domainnevet megfelelő IP-címre oldja fel.",
+          "HTTPS: titkosított kommunikációt ad a böngésző és a szerver között.",
+          "HTTP-kérés: metódus (GET/POST), útvonal, fejlécek, esetleg törzs.",
+          "HTTP-válasz: státuszkód (200 siker, 404 nem található) és tartalom."
+        ],
+        "code": "GET /index.html HTTP/1.1\nHost: pelda.hu\n\nHTTP/1.1 200 OK\nContent-Type: text/html",
+        "exercise": [
+          "Nyisd meg a böngésződ fejlesztői eszközeit (F12), Network fület.",
+          "Keress egy HTTP-kérést és olvasd le a státuszkódját."
+        ],
+        "quiz": {
+          "question": "Mit jelez a 404-es HTTP-státuszkód?",
+          "options": [
+            "Sikeres válasz",
+            "A kért erőforrás nem található",
+            "Jelszóhiba",
+            "JavaScript szintaktikai hiba"
+          ],
+          "answer": 1,
+          "explain": "A 404 azt jelzi, hogy a szerver nem találta a kért erőforrást."
+        }
+      },
+      {
+        "id": "alapok-5",
+        "title": "Hibakeresés és Git",
+        "level": "Haladó",
+        "minutes": 34,
+        "overview": "A hibakeresés nem véletlenszerű próbálkozás: először reprodukáld a hibát, majd szűkítsd le az okát. A Git a fájlok változásait követi, így visszanézheted, mi módosult.",
+        "concepts": [
+          "Szintaktikai hiba: a kód nem felel meg a nyelv szabályainak.",
+          "Logikai hiba: fut a kód, de rossz eredményt ad.",
+          "A git status megmutatja a változásokat; a git diff a soronkénti eltéréseket.",
+          "Commit: a projekt állapotának névvel és üzenettel ellátott pillanatképe."
+        ],
+        "code": "git init\ngit status\ngit add README.md\ngit commit -m \"Első jegyzetek\"\ngit log --oneline",
+        "exercise": [
+          "Készíts egy Git-tárolót a gyakorló mappádban.",
+          "Változtass meg egy szöveget, és nézd meg git diff segítségével."
+        ],
+        "quiz": {
+          "question": "Mire jó a Git?",
+          "options": [
+            "Változatkövetésre",
+            "Csak képfeldolgozásra",
+            "Vírusirtásra",
+            "Internetkapcsolat helyett"
+          ],
+          "answer": 0,
+          "explain": "A Git rögzíti és összehasonlítja a projekt változásait."
+        }
+      },
+      {
+        "id": "alapok-6",
+        "title": "Önálló tanulás és első mini projekt",
+        "level": "Haladó",
+        "minutes": 38,
+        "overview": "A tartós tudás kulcsa a rendszeres gyakorlás. Egy lecke után módosítsd a példát, írj saját változatot, és magyarázd el, mit miért csinál. Az első projekt legyen kicsi, de befejezhető.",
+        "concepts": [
+          "Egy nagy problémát bonts kis feladatokra; minden feladat legyen ellenőrizhető.",
+          "Előbb készíts működő alapváltozatot, utána szépítsd a kódot.",
+          "Jegyezd fel az új fogalmakat és a hibákat, amiket megoldottál.",
+          "A kódban kapott válaszokat ellenőrizd; a másolt megoldásból nehezebb tanulni."
+        ],
+        "code": "# Mini projekt: bevásárlólista\nlista = []\nfor _ in range(3):\n    lista.append(input(\"Mit vegyünk? \"))\nprint(\"Lista:\")\nfor elem in lista:\n    print(\"-\", elem)",
+        "exercise": [
+          "Bővítsd a listát tetszőleges hosszúságúra, egy kilépési paranccsal.",
+          "Tedd a projektet Gitbe, és írj hozzá rövid README-t."
+        ],
+        "quiz": {
+          "question": "Mikor a leghasznosabb a programozási példa?",
+          "options": [
+            "Ha csak átfutod",
+            "Ha módosítod, kipróbálod és megmagyarázod",
+            "Ha bemagolod",
+            "Ha sosem futtatod"
+          ],
+          "answer": 1,
+          "explain": "A kísérletezés és a saját megoldások építik a valódi készséget."
+        }
+      }
+    ]
+  },
+  {
+    "slug": "html",
+    "title": "HTML",
+    "icon": "🌐",
+    "category": "Webfejlesztés",
+    "description": "Weboldalak szemantikus felépítése, űrlapok, média és akadálymentesség.",
+    "prereqs": [
+      "alapok"
+    ],
+    "setup": "Egy böngésző és egy szövegszerkesztő elég. Mentsd a fájlt .html kiterjesztéssel, majd nyisd meg.",
+    "runtime": "browser",
+    "lessons": [
+      {
+        "id": "html-1",
+        "title": "Az első HTML-oldal",
+        "level": "Kezdő",
+        "minutes": 18,
+        "overview": "A HTML jelölőnyelv: elemekkel írja le a dokumentum szerkezetét. A böngésző értelmezi a címkéket, és egy dokumentumfát épít belőlük.",
+        "concepts": [
+          "A <!doctype html> modern HTML-dokumentumot jelez.",
+          "A head metaadatokat, a body a látható tartalmat tartalmazza.",
+          "Az elemek nyitó és záró címkéből állhatnak.",
+          "A lang=\"hu\" segít a képernyőolvasónak és keresőnek."
+        ],
+        "code": "<!doctype html>\n<html lang=\"hu\">\n<head><meta charset=\"utf-8\"><title>Első oldalam</title></head>\n<body><h1>Szia, világ!</h1><p>Most tanulok HTML-t.</p></body>\n</html>",
+        "exercise": [
+          "Hozz létre index.html fájlt.",
+          "Adj hozzá saját címet és két bekezdést."
+        ],
+        "quiz": {
+          "question": "A HTML a weboldal tartalmi szerkezetét írja le.",
+          "options": [
+            "Igaz",
+            "Hamis"
+          ],
+          "answer": 0,
+          "explain": "Az állítás értékeléséhez figyeld a leckében bemutatott működési szabályt."
+        }
+      },
+      {
+        "id": "html-2",
+        "title": "Szöveg, listák, hivatkozások",
+        "level": "Kezdő",
+        "minutes": 22,
+        "overview": "A helyes elemet a jelentése alapján válaszd, ne csak a kinézete szerint. A megfelelő szerkezet segíti a keresőket, az akadálymentességet és a későbbi CSS-formázást.",
+        "concepts": [
+          "A h1–h6 címsorszintek logikai hierarchiát alkotnak.",
+          "A p bekezdés, a strong fontos hangsúly.",
+          "Az ul rendezetlen, az ol rendezett lista.",
+          "Az a href attribútummal hivatkozik; külső linknél érdemes értelmes szöveget adni."
+        ],
+        "code": "<h1>Recept</h1>\n<p>Egyszerű reggeli:</p>\n<ol><li>Vizet forralok</li><li>Teát készítek</li></ol>\n<a href=\"https://developer.mozilla.org/\">HTML dokumentáció</a>",
+        "exercise": [
+          "Készíts saját receptoldalt legalább 5 lépéssel.",
+          "Adj hozzá egy külső hivatkozást értelmes szöveggel."
+        ],
+        "quiz": {
+          "question": "A h1 és a h2 közötti különbség szemantikus is, nem csupán vizuális.",
+          "options": [
+            "Igaz",
+            "Hamis"
+          ],
+          "answer": 0,
+          "explain": "Az állítás értékeléséhez figyeld a leckében bemutatott működési szabályt."
+        }
+      },
+      {
+        "id": "html-3",
+        "title": "Képek és média",
+        "level": "Középhaladó",
+        "minutes": 26,
+        "overview": "A képek megjelenítéséhez az img elem forrást és helyettesítő szöveget kap. A méretek helyes megadása segít elkerülni a tartalom ugrálását betöltéskor.",
+        "concepts": [
+          "Az alt szöveg közli a kép tartalmát, ha a kép nem látható.",
+          "A figure és figcaption képet és feliratot fog össze.",
+          "A loading=\"lazy\" késleltetett képbetöltést kér.",
+          "A video controls a böngésző lejátszóvezérlőit jeleníti meg."
+        ],
+        "code": "<figure>\n  <img src=\"kepek/kutya.jpg\" alt=\"Barna kutya fut a parkban\" width=\"600\" height=\"400\" loading=\"lazy\">\n  <figcaption>Séta a parkban</figcaption>\n</figure>",
+        "exercise": [
+          "Készíts háromképes galériát.",
+          "Minden képhez írj valóban informatív alt szöveget."
+        ],
+        "quiz": {
+          "question": "A dekoratív képekhez is mindig hosszú alt szöveg szükséges.",
+          "options": [
+            "Igaz",
+            "Hamis"
+          ],
+          "answer": 1,
+          "explain": "Az állítás értékeléséhez figyeld a leckében bemutatott működési szabályt."
+        }
+      },
+      {
+        "id": "html-4",
+        "title": "Szemantikus oldalszerkezet",
+        "level": "Középhaladó",
+        "minutes": 30,
+        "overview": "A szemantikus HTML megmondja, melyik tartalom navigáció, főtartalom vagy kiegészítő rész. A div önmagában nem jelent semmit; akkor használd, ha nincs alkalmasabb elem.",
+        "concepts": [
+          "A header bevezető tartalmat fog össze.",
+          "A nav fontos navigációs hivatkozásokat tartalmaz.",
+          "A main az oldal elsődleges tartalma; oldalanként általában egy látható főtartalom legyen.",
+          "Az article önállóan is értelmezhető egység, a section tematikus csoport."
+        ],
+        "code": "<header><h1>Blogom</h1></header>\n<nav><a href=\"#cikk\">Cikkek</a></nav>\n<main><article id=\"cikk\"><h2>Első bejegyzés</h2><p>Tartalom.</p></article></main>\n<footer>Kapcsolat</footer>",
+        "exercise": [
+          "Építs szemantikus portfóliót header, nav, main és footer elemmel.",
+          "Ellenőrizd a címsorok sorrendjét."
+        ],
+        "quiz": {
+          "question": "A main elem az oldal elsődleges tartalmát jelöli.",
+          "options": [
+            "Igaz",
+            "Hamis"
+          ],
+          "answer": 0,
+          "explain": "Az állítás értékeléséhez figyeld a leckében bemutatott működési szabályt."
+        }
+      },
+      {
+        "id": "html-5",
+        "title": "Űrlapok és ellenőrzés",
+        "level": "Haladó",
+        "minutes": 34,
+        "overview": "Az űrlap a felhasználó adatait gyűjti össze. A böngésző képes alapellenőrzést végezni, de szerverre küldött adatnál szerveroldali ellenőrzés is kell.",
+        "concepts": [
+          "A label for attribútuma az input id-jéhez kapcsolódik.",
+          "A name az adatkulcs, amely az űrlap beküldésekor szerepel.",
+          "A required, minlength és type=\"email\" segítik az ellenőrzést.",
+          "A button type=\"submit\" elküldi az űrlapot."
+        ],
+        "code": "<form>\n <label for=\"email\">E-mail</label>\n <input id=\"email\" name=\"email\" type=\"email\" required>\n <label for=\"uzenet\">Üzenet</label>\n <textarea id=\"uzenet\" name=\"uzenet\" minlength=\"10\"></textarea>\n <button type=\"submit\">Küldés</button>\n</form>",
+        "exercise": [
+          "Készíts kapcsolatfelvételi űrlapot 3 mezővel.",
+          "Próbáld ki a böngésző hibajelzéseit."
+        ],
+        "quiz": {
+          "question": "A böngésző ellenőrzése minden esetben kiváltja a szerveroldali ellenőrzést.",
+          "options": [
+            "Igaz",
+            "Hamis"
+          ],
+          "answer": 1,
+          "explain": "Az állítás értékeléséhez figyeld a leckében bemutatott működési szabályt."
+        }
+      },
+      {
+        "id": "html-6",
+        "title": "SEO, metaadatok és hozzáférhetőség",
+        "level": "Haladó",
+        "minutes": 38,
+        "overview": "A jól megírt HTML-t a böngészőn kívül keresőmotorok, képernyőolvasók és más eszközök is feldolgozzák. A hozzáférhetőség az alapmegoldásokkal kezdődik, nem csak ARIA-attribútumokkal.",
+        "concepts": [
+          "Az egyedi title megjelenik a böngészőfülön és gyakran a keresőben.",
+          "A meta description összefoglalhatja az oldalt.",
+          "A gomb legyen button, ne kattintható div.",
+          "A billentyűzettel is járható felület sok embernek fontos."
+        ],
+        "code": "<head>\n <meta charset=\"utf-8\">\n <meta name=\"viewport\" content=\"width=device-width, initial-scale=1\">\n <meta name=\"description\" content=\"Saját magyar portfólióoldalam.\">\n <title>Portfólió – Anna</title>\n</head>",
+        "exercise": [
+          "Ellenőrizd oldalaidat billentyűzettel (Tab, Enter).",
+          "Futtass Lighthouse hozzáférhetőségi ellenőrzést."
+        ],
+        "quiz": {
+          "question": "A szemantikus HTML az akadálymentesség egyik alapja.",
+          "options": [
+            "Igaz",
+            "Hamis"
+          ],
+          "answer": 0,
+          "explain": "Az állítás értékeléséhez figyeld a leckében bemutatott működési szabályt."
+        }
+      }
+    ]
+  },
+  {
+    "slug": "css",
+    "title": "CSS",
+    "icon": "🎨",
+    "category": "Webfejlesztés",
+    "description": "Reszponzív, modern felületek építése stíluslapokkal.",
+    "prereqs": [
+      "html"
+    ],
+    "setup": "Nyiss egy .css fájlt, és kösd a HTML-hez a <link rel=\"stylesheet\" href=\"styles.css\"> elemmel.",
+    "runtime": "browser",
+    "lessons": [
+      {
+        "id": "css-1",
+        "title": "Szelektorok és szabályok",
+        "level": "Kezdő",
+        "minutes": 18,
+        "overview": "A CSS megjelenítési szabályokat alkalmaz HTML-elemekre. Egy szabály szelektorból és tulajdonságokból áll; több egymással ütköző szabály esetén a kaszkád dönti el a végeredményt.",
+        "concepts": [
+          "Az elem-, osztály- és id-szelektor eltérő elemeket céloz.",
+          "A .kartya osztályt több elem is használhatja.",
+          "A :hover állapotváltozást céloz.",
+          "A CSS-fájlt link rel=\"stylesheet\" kapcsolja az oldalhoz."
+        ],
+        "code": "body { font-family: system-ui; background: #0f172a; color: white; }\n.kartya { padding: 20px; border-radius: 12px; background: #1e293b; }\n.kartya:hover { outline: 2px solid #22d3ee; }",
+        "exercise": [
+          "Adj külön stíluslapot a HTML-oldaladhoz.",
+          "Készíts 3 különböző osztályt és próbáld ki őket."
+        ],
+        "quiz": {
+          "question": "A .kartya osztályszelektor, amely több elemen is használható.",
+          "options": [
+            "Igaz",
+            "Hamis"
+          ],
+          "answer": 0,
+          "explain": "Az állítás értékeléséhez figyeld a leckében bemutatott működési szabályt."
+        }
+      },
+      {
+        "id": "css-2",
+        "title": "Dobozmodell, méretezés",
+        "level": "Kezdő",
+        "minutes": 22,
+        "overview": "Minden elem téglalap alakú dobozként vesz részt az elrendezésben. A tartalom körül padding, border és margin található. A rossz méretezés gyakori túlcsordulást okoz.",
+        "concepts": [
+          "Content: az elem tényleges tartalma.",
+          "Padding: belső térköz, margin: külső térköz.",
+          "Border: a két térköz közötti szegély.",
+          "box-sizing: border-box mellett a megadott width a paddinget és bordert is tartalmazza."
+        ],
+        "code": "* { box-sizing: border-box; }\n.box { width: 300px; padding: 24px; border: 2px solid #8b5cf6; margin: 20px auto; }",
+        "exercise": [
+          "Rajzold le egy doboz négy rétegét.",
+          "Változtasd a paddinget és a margint, figyeld az eltérést."
+        ],
+        "quiz": {
+          "question": "A padding az elem külső margója.",
+          "options": [
+            "Igaz",
+            "Hamis"
+          ],
+          "answer": 1,
+          "explain": "Az állítás értékeléséhez figyeld a leckében bemutatott működési szabályt."
+        }
+      },
+      {
+        "id": "css-3",
+        "title": "Flexbox – egyirányú elrendezés",
+        "level": "Középhaladó",
+        "minutes": 26,
+        "overview": "A Flexbox kiváló navigációs sorokhoz, gombcsoportokhoz és egy dimenzió mentén elrendezett elemekhez. A szülő szabályozza a gyermekelemek igazítását.",
+        "concepts": [
+          "display:flex bekapcsolja a flex elrendezést.",
+          "justify-content a főtengely mentén igazít.",
+          "align-items a kereszttengely mentén igazít.",
+          "gap térközt ad az elemek közé, wrap engedi a sortörést."
+        ],
+        "code": ".menü { display: flex; gap: 12px; align-items: center; justify-content: space-between; flex-wrap: wrap; }",
+        "exercise": [
+          "Építs navigációs sávot bal oldali logóval és jobb oldali linkekkel.",
+          "Próbáld ki keskeny képernyőn."
+        ],
+        "quiz": {
+          "question": "A gap a flexelemek közötti térközt szabályozza.",
+          "options": [
+            "Igaz",
+            "Hamis"
+          ],
+          "answer": 0,
+          "explain": "Az állítás értékeléséhez figyeld a leckében bemutatott működési szabályt."
+        }
+      },
+      {
+        "id": "css-4",
+        "title": "Grid – kétdimenziós elrendezés",
+        "level": "Középhaladó",
+        "minutes": 30,
+        "overview": "A CSS Grid egyszerre kezel sorokat és oszlopokat, ezért alkalmas galériákhoz és oldalszerkezetekhez. A Flexbox és a Grid nem rivális: gyakran együtt használjuk őket.",
+        "concepts": [
+          "grid-template-columns megadja az oszlopokat.",
+          "Az fr a rendelkezésre álló teret arányosan osztja el.",
+          "repeat() ismétlődő pályákat állít elő.",
+          "minmax() és auto-fit reszponzív rácsot készíthet."
+        ],
+        "code": ".racs { display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 18px; }",
+        "exercise": [
+          "Készíts 6 kártyából automatikusan tördelődő galériát.",
+          "Teszteld mobilméretben."
+        ],
+        "quiz": {
+          "question": "A Grid egyszerre kezelhet sor- és oszlopelrendezést.",
+          "options": [
+            "Igaz",
+            "Hamis"
+          ],
+          "answer": 0,
+          "explain": "Az állítás értékeléséhez figyeld a leckében bemutatott működési szabályt."
+        }
+      },
+      {
+        "id": "css-5",
+        "title": "Reszponzív design és media query",
+        "level": "Haladó",
+        "minutes": 34,
+        "overview": "A reszponzív oldal különböző képernyőkön jól használható. A mobil-first módszerben először a keskeny megjelenítést tervezzük, és szélesebb képernyőn bővítjük az elrendezést.",
+        "concepts": [
+          "A viewport meta címke szükséges a helyes mobilos skálázáshoz.",
+          "@media feltételhez köti a stílusokat.",
+          "A rem rugalmasabb méretezéshez hasznos.",
+          "Max-width akadályozza a szöveg túl hosszú sorait."
+        ],
+        "code": ".layout { display: block; padding: 16px; }\n@media (min-width: 768px) {\n  .layout { display: grid; grid-template-columns: 240px 1fr; gap: 24px; }\n}",
+        "exercise": [
+          "Készíts olyan oldalt, amely mobilon egy, asztali nézetben két oszlopos.",
+          "Teszteld böngésző-eszköztárban."
+        ],
+        "quiz": {
+          "question": "A mobil-first megközelítésből kiindulva szélesebb nézetekre adunk plusz szabályokat.",
+          "options": [
+            "Igaz",
+            "Hamis"
+          ],
+          "answer": 0,
+          "explain": "Az állítás értékeléséhez figyeld a leckében bemutatott működési szabályt."
+        }
+      },
+      {
+        "id": "css-6",
+        "title": "Változók, átmenetek és hozzáférhetőség",
+        "level": "Haladó",
+        "minutes": 38,
+        "overview": "A CSS-változók központilag tárolják a színeket, méreteket és más értékeket. Az animáció lehet hasznos visszajelzés, de figyelni kell a mozgáscsökkentési preferenciákra.",
+        "concepts": [
+          "A --szin egyéni tulajdonság, var(--szin) kiolvassa.",
+          "transition simább állapotváltozást hoz létre.",
+          "A :focus-visible billentyűzetes fókuszt jelöl.",
+          "A prefers-reduced-motion csökkentheti a fölösleges animációkat. ,"
+        ],
+        "code": ":root { --kiemeles: #a78bfa; }\nbutton { background: var(--kiemeles); transition: transform .2s; }\nbutton:hover { transform: translateY(-2px); }\nbutton:focus-visible { outline: 3px solid white; }\n@media (prefers-reduced-motion: reduce) { * { transition: none !important; } }",
+        "exercise": [
+          "Tervezz sötét és világos színpalettát CSS-változókkal.",
+          "Adj jól látható fókuszállapotot az interaktív elemeknek."
+        ],
+        "quiz": {
+          "question": "A focus-visible segíthet a billentyűzettel navigálók számára.",
+          "options": [
+            "Igaz",
+            "Hamis"
+          ],
+          "answer": 0,
+          "explain": "Az állítás értékeléséhez figyeld a leckében bemutatott működési szabályt."
+        }
+      }
+    ]
+  },
+  {
+    "slug": "javascript",
+    "title": "JavaScript",
+    "icon": "⚡",
+    "category": "Webfejlesztés",
+    "description": "Logika, események, DOM, aszinkron működés és modulok.",
+    "prereqs": [
+      "html",
+      "css"
+    ],
+    "setup": "Böngészőben nyisd meg a fejlesztői konzolt (F12). Komolyabb projekthez telepíts Node.js-t.",
+    "runtime": "browser",
+    "lessons": [
+      {
+        "id": "javascript-1",
+        "title": "Változók és adattípusok",
+        "level": "Kezdő",
+        "minutes": 18,
+        "overview": "A JavaScript a böngészőben futó programozási nyelv, de szerveren is futtatható Node.js-sel. A változókat let és const segítségével hozhatjuk létre.",
+        "concepts": [
+          "A const nem rendelhető újra, a let igen.",
+          "A string szöveg, a number szám, a boolean igaz/hamis.",
+          "A null szándékos üres érték; undefined hiányzó értéket is jelenthet.",
+          "A === szigorú összehasonlítás, nem végez automatikus típuskonverziót."
+        ],
+        "code": "const nev = \"Anna\";\nlet pont = 10;\npont += 5;\nconsole.log(`${nev} pontjai: ${pont}`);\nconsole.log(pont === 15);",
+        "exercise": [
+          "Írj átváltót Celsiusból Fahrenheitre.",
+          "Próbáld ki eltérő bemenő értékekkel a böngésző konzoljában."
+        ],
+        "quiz": {
+          "question": "A const változónak később tetszőlegesen új érték adható.",
+          "options": [
+            "Igaz",
+            "Hamis"
+          ],
+          "answer": 1,
+          "explain": "Az állítás értékeléséhez figyeld a leckében bemutatott működési szabályt."
+        }
+      },
+      {
+        "id": "javascript-2",
+        "title": "Feltételek és ciklusok",
+        "level": "Kezdő",
+        "minutes": 22,
+        "overview": "Programjaink a bemenet alapján döntenek és gyakran ismételnek műveleteket. A megfelelő ciklus és leállási feltétel elkerüli a végtelen ismétlést.",
+        "concepts": [
+          "Az if/else döntést hoz.",
+          "A for ismert számú ismétlésnél kényelmes.",
+          "A while addig fut, amíg a feltétel igaz.",
+          "A break leállítja, a continue átugorja az aktuális kör hátralévő részét."
+        ],
+        "code": "for (let i = 1; i <= 5; i++) {\n  if (i % 2 === 0) console.log(i, \"páros\");\n  else console.log(i, \"páratlan\");\n}",
+        "exercise": [
+          "Írj 1-től 100-ig számoló FizzBuzz programot.",
+          "Teszteld, mi történik 0 és negatív értéknél."
+        ],
+        "quiz": {
+          "question": "A while ciklusnál lényeges a leállási feltétel.",
+          "options": [
+            "Igaz",
+            "Hamis"
+          ],
+          "answer": 0,
+          "explain": "Az állítás értékeléséhez figyeld a leckében bemutatott működési szabályt."
+        }
+      },
+      {
+        "id": "javascript-3",
+        "title": "Függvények és hatókör",
+        "level": "Középhaladó",
+        "minutes": 26,
+        "overview": "A függvény névvel ellátott, újrafelhasználható logikai egység. A paraméterek bemenetek, a return pedig visszaad egy eredményt. A kód könnyebben tesztelhető, ha a függvény kevés dolgot csinál.",
+        "concepts": [
+          "A függvénydeklaráció és arrow function két lehetséges forma.",
+          "A paraméter alapértéket kaphat.",
+          "A lokális változók nem érhetők el bárhonnan.",
+          "A tiszta függvény ugyanarra a bemenetre ugyanazt az eredményt adja."
+        ],
+        "code": "const osszead = (a, b) => a + b;\nfunction koszont(nev = \"vendég\") {\n  return `Szia, ${nev}!`;\n}\nconsole.log(osszead(4, 7), koszont());",
+        "exercise": [
+          "Írj függvényt, amely visszaadja egy tömb számainak átlagát.",
+          "Kezeld az üres tömb esetét."
+        ],
+        "quiz": {
+          "question": "A return a függvény eredményét adja vissza.",
+          "options": [
+            "Igaz",
+            "Hamis"
+          ],
+          "answer": 0,
+          "explain": "Az állítás értékeléséhez figyeld a leckében bemutatott működési szabályt."
+        }
+      },
+      {
+        "id": "javascript-4",
+        "title": "Tömbök és objektumok",
+        "level": "Középhaladó",
+        "minutes": 30,
+        "overview": "A tömb sorrendbe helyezett elemeket, az objektum kulcs–érték párokat tartalmaz. Gyakran használunk map, filter és reduce műveleteket adatfeldolgozáshoz.",
+        "concepts": [
+          "A tömb indexe 0-val kezdődik.",
+          "A map minden elemre alkalmaz egy függvényt és új tömböt ad.",
+          "A filter a feltételnek megfelelő elemeket tartja meg.",
+          "A spread (...) segít másolatot készíteni és bővíteni."
+        ],
+        "code": "const termekek = [{nev:\"Tea\",ar:450},{nev:\"Kávé\",ar:750}];\nconst dragak = termekek.filter(t => t.ar > 500);\nconsole.log(dragak.map(t => t.nev));",
+        "exercise": [
+          "Készíts kosárösszegzőt termékekből reduce segítségével.",
+          "Számolj 10% kedvezményt egy külön függvényben."
+        ],
+        "quiz": {
+          "question": "A map módosítja helyben az eredeti tömböt minden esetben.",
+          "options": [
+            "Igaz",
+            "Hamis"
+          ],
+          "answer": 1,
+          "explain": "Az állítás értékeléséhez figyeld a leckében bemutatott működési szabályt."
+        }
+      },
+      {
+        "id": "javascript-5",
+        "title": "DOM és események",
+        "level": "Haladó",
+        "minutes": 34,
+        "overview": "A DOM a HTML-elemek programozható reprezentációja. JavaScriptből kereshetünk elemeket, módosíthatunk szöveget és reagálhatunk a felhasználó eseményeire.",
+        "concepts": [
+          "A querySelector kiválasztja az első illeszkedő elemet.",
+          "Az addEventListener eseménykezelőt köt egy elemhez.",
+          "A textContent biztonságosabb szövegmegjelenítéshez, mint a nyers innerHTML.",
+          "Az eseménykezelőben ellenőrizni kell az esetleges hiányzó elemeket."
+        ],
+        "code": "<button id=\"gomb\">Kattints!</button>\n<p id=\"szamlalo\">0</p>\n<script>\nlet n=0;\ndocument.querySelector(\"#gomb\").addEventListener(\"click\",()=>{\n document.querySelector(\"#szamlalo\").textContent = String(++n);\n});\n</script>",
+        "exercise": [
+          "Készíts kattintásszámlálót nullázó gombbal.",
+          "Bővítsd úgy, hogy ne mehessen negatívba."
+        ],
+        "quiz": {
+          "question": "A textContent szöveget állít be, nem értelmezi HTML-ként.",
+          "options": [
+            "Igaz",
+            "Hamis"
+          ],
+          "answer": 0,
+          "explain": "Az állítás értékeléséhez figyeld a leckében bemutatott működési szabályt."
+        }
+      },
+      {
+        "id": "javascript-6",
+        "title": "Promise, fetch és hibakezelés",
+        "level": "Haladó",
+        "minutes": 38,
+        "overview": "Hálózati műveletek közben az alkalmazásnak nem kell leállnia. Az async/await segítségével olvashatóan várhatunk aszinkron műveletekre. A hibákat külön kezeljük.",
+        "concepts": [
+          "A Promise egy későbbi eredményt vagy hibát reprezentál.",
+          "Az await csak async függvényben vagy megfelelő modul-környezetben használható.",
+          "A fetch alapból nem dob hibát minden HTTP 4xx/5xx válasznál: response.ok-t ellenőrizz.",
+          "try/catch kezelheti a hálózati és feldolgozási hibákat."
+        ],
+        "code": "async function betolt() {\n try {\n  const valasz = await fetch(\"/adatok.json\");\n  if (!valasz.ok) throw new Error(`HTTP ${valasz.status}`);\n  return await valasz.json();\n } catch (hiba) { console.error(\"Nem sikerült:\", hiba); return []; }\n}",
+        "exercise": [
+          "Készíts helyi adatok.json fájlt, és töltsd be fetch-csel fejlesztői szerverről.",
+          "Jeleníts meg hibaüzenetet, ha nem található a fájl."
+        ],
+        "quiz": {
+          "question": "A fetch HTTP 404 válasz esetén mindig automatikusan elutasítja a Promise-t.",
+          "options": [
+            "Igaz",
+            "Hamis"
+          ],
+          "answer": 1,
+          "explain": "Az állítás értékeléséhez figyeld a leckében bemutatott működési szabályt."
+        }
+      }
+    ]
+  },
+  {
+    "slug": "typescript",
+    "title": "TypeScript",
+    "icon": "🔷",
+    "category": "Webfejlesztés",
+    "description": "JavaScript típusokkal, generikusokkal és biztonságos API-modellekkel.",
+    "prereqs": [
+      "javascript"
+    ],
+    "setup": "Node.js telepítés után: npm init -y; npm install -D typescript; npx tsc --init.",
+    "runtime": "local",
+    "lessons": [
+      {
+        "id": "typescript-1",
+        "title": "Miért hasznos a TypeScript?",
+        "level": "Kezdő",
+        "minutes": 18,
+        "overview": "A TypeScript JavaScriptre épülő nyelv, amely fordítás előtt típushibákat is felismer. A típusok segítenek a szerkesztőnek és a csapatnak megérteni, milyen adatokat vár a kód.",
+        "concepts": [
+          "A TS típusellenőrzés után JavaScriptre alakul.",
+          "A string, number és boolean primitív típusok.",
+          "Az automatikus típuskövetkeztetés gyakran elég.",
+          "A TS típusok önmagukban nem ellenőrzik a szerverről érkező adatot futásidőben."
+        ],
+        "code": "const nev: string = \"Anna\";\nlet kor: number = 20;\nfunction duplaz(x: number): number { return x * 2; }\nconsole.log(duplaz(kor));",
+        "exercise": [
+          "Telepíts TypeScriptet egy tesztprojekthez.",
+          "Adj hibás típust egy változónak, és nézd meg a szerkesztő jelzését."
+        ],
+        "quiz": {
+          "question": "A TypeScript típusai JavaScriptre fordítás után is automatikusan ellenőrzik a hálózati adatokat.",
+          "options": [
+            "Igaz",
+            "Hamis"
+          ],
+          "answer": 1,
+          "explain": "Az állítás értékeléséhez figyeld a leckében bemutatott működési szabályt."
+        }
+      },
+      {
+        "id": "typescript-2",
+        "title": "Objektumok és interfészek",
+        "level": "Kezdő",
+        "minutes": 22,
+        "overview": "Interfészekkel és típusálnevekkel meghatározzuk az összetett adatok alakját. Az opcionális mezők csak akkor használhatók, ha léteznek.",
+        "concepts": [
+          "A type és interface gyakran hasonló célra használható.",
+          "A ? az opcionális mezőt jelöli.",
+          "A readonly megakadályozhatja a közvetlen értékadást a TS ellenőrzésében.",
+          "A union típus több lehetséges értéket fog össze."
+        ],
+        "code": "interface Tanulo { nev: string; kor?: number; }\ntype Szint = \"kezdo\" | \"halado\";\nconst tanulo: Tanulo = { nev: \"Béla\" };\nconsole.log(tanulo.kor ?? \"ismeretlen\");",
+        "exercise": [
+          "Definiálj Termek típust ár, név és opcionális készlet mezővel.",
+          "Írj függvényt, amely jól formázza."
+        ],
+        "quiz": {
+          "question": "A ? opcionális mezőt jelölhet egy interfészben.",
+          "options": [
+            "Igaz",
+            "Hamis"
+          ],
+          "answer": 0,
+          "explain": "Az állítás értékeléséhez figyeld a leckében bemutatott működési szabályt."
+        }
+      },
+      {
+        "id": "typescript-3",
+        "title": "Uniók és típus-szűkítés",
+        "level": "Középhaladó",
+        "minutes": 26,
+        "overview": "Valós alkalmazásokban egy adat több alakot ölthet. Az uniók és a típusellenőrzések teszik lehetővé az egyes esetek biztonságos kezelését.",
+        "concepts": [
+          "A typeof primitív típusok vizsgálatára jó.",
+          "Az in operátor objektummező meglétét ellenőrizheti.",
+          "A diszkriminált unió egy közös jelölőmező alapján ágazik.",
+          "A never a minden esetet lefedő ellenőrzéshez hasznos."
+        ],
+        "code": "type Valasz = {ok:true; adat:string} | {ok:false; hiba:string};\nfunction kiir(v: Valasz) {\n if (v.ok) return v.adat;\n return v.hiba;\n}",
+        "exercise": [
+          "Készíts háromállapotú (loading/success/error) választípust.",
+          "Kezeld az összes állapotot switch-ben."
+        ],
+        "quiz": {
+          "question": "Az uniótípus több lehetséges adatváltozatot enged.",
+          "options": [
+            "Igaz",
+            "Hamis"
+          ],
+          "answer": 0,
+          "explain": "Az állítás értékeléséhez figyeld a leckében bemutatott működési szabályt."
+        }
+      },
+      {
+        "id": "typescript-4",
+        "title": "Generikusok",
+        "level": "Középhaladó",
+        "minutes": 30,
+        "overview": "A generikus függvények és osztályok úgy újrafelhasználhatók, hogy közben megőrzik a konkrét típusinformációt. Ez különösen hasznos listák és API-függvények esetén.",
+        "concepts": [
+          "A <T> egy típusparaméter.",
+          "A T[] T típusú elemekből álló tömböt jelent.",
+          "A generikus korlát extends-szel adható meg.",
+          "Kerüld a szükségtelen any típust, mert elveszíti a típusellenőrzés előnyeit."
+        ],
+        "code": "function elso<T>(lista: T[]): T | undefined { return lista[0]; }\nconst a = elso([1, 2, 3]);\nconst b = elso([\"a\", \"b\"]);",
+        "exercise": [
+          "Írj utolso<T> függvényt.",
+          "Írj generikus Doboz<T> típust, amely egy értéket tárol."
+        ],
+        "quiz": {
+          "question": "A generikus függvény képes megőrizni a bemeneti típusinformációt.",
+          "options": [
+            "Igaz",
+            "Hamis"
+          ],
+          "answer": 0,
+          "explain": "Az állítás értékeléséhez figyeld a leckében bemutatott működési szabályt."
+        }
+      },
+      {
+        "id": "typescript-5",
+        "title": "API-k, ismeretlen adatok",
+        "level": "Haladó",
+        "minutes": 34,
+        "overview": "A külső API válasza megbízhatatlan adat: a TypeScript típusannotáció nem ellenőrzi automatikusan a JSON-t. A bizonytalan értékekhez unknown és futásidejű validálás kell.",
+        "concepts": [
+          "A JSON.parse típuskényszerítés nélkül sem garantál helyes adatot.",
+          "Az unknown biztonságosabb, mint az any.",
+          "A type guard ellenőriz egy feltételt és szűkíti a típust.",
+          "Az API-hibákat és hiányzó mezőket külön kezeld."
+        ],
+        "code": "function isNev(x: unknown): x is {nev:string} {\n return typeof x === \"object\" && x !== null && \"nev\" in x\n   && typeof x.nev === \"string\";\n}",
+        "exercise": [
+          "Készíts ellenőrzőt termékobjektumhoz.",
+          "Teszteld hiányzó és hibás ár adattal."
+        ],
+        "quiz": {
+          "question": "Az unknown típust használat előtt szűkíteni kell.",
+          "options": [
+            "Igaz",
+            "Hamis"
+          ],
+          "answer": 0,
+          "explain": "Az állítás értékeléséhez figyeld a leckében bemutatott működési szabályt."
+        }
+      },
+      {
+        "id": "typescript-6",
+        "title": "Konfiguráció és tesztelés",
+        "level": "Haladó",
+        "minutes": 38,
+        "overview": "A tsconfig szabályozza a fordító működését; a szigorú ellenőrzések hibákat előznek meg. Az elkészült kódot továbbra is futás közben kell tesztelni.",
+        "concepts": [
+          "A strict bekapcsolja a szigorú típusellenőrzések csoportját.",
+          "A noEmit ellenőriz, de nem készít JS-kimenetet.",
+          "A tsc --noEmit automatizálható.",
+          "A típushelyesség nem garantál helyes üzleti logikát."
+        ],
+        "code": "{\n  \"compilerOptions\": {\n    \"target\": \"ES2022\", \"module\": \"ESNext\", \"strict\": true, \"noEmit\": true\n  }\n}",
+        "exercise": [
+          "Készíts egyszerű TS projektet.",
+          "Futtasd npx tsc --noEmit parancsot és javítsd a típushibákat."
+        ],
+        "quiz": {
+          "question": "A sikeres TS típusellenőrzés bizonyítja, hogy a program minden esetben hibátlanul működik.",
+          "options": [
+            "Igaz",
+            "Hamis"
+          ],
+          "answer": 1,
+          "explain": "Az állítás értékeléséhez figyeld a leckében bemutatott működési szabályt."
+        }
+      }
+    ]
+  },
+  {
+    "slug": "jsx",
+    "title": "JSX",
+    "icon": "🧩",
+    "category": "Webfejlesztés",
+    "description": "HTML-szerű szintaxis JavaScriptben, komponensek rendereléséhez.",
+    "prereqs": [
+      "javascript",
+      "html"
+    ],
+    "setup": "Hozz létre Vite React projektet: npm create vite@latest jsx-gyakorlas -- --template react; npm install; npm run dev.",
+    "runtime": "local",
+    "lessons": [
+      {
+        "id": "jsx-1",
+        "title": "Mi az a JSX?",
+        "level": "Kezdő",
+        "minutes": 18,
+        "overview": "A JSX egy JavaScript-szintaxisbővítés, amely elemek leírását teszi olvashatóvá. A JSX nem HTML: a build eszköz JavaScript-hívásokká fordítja. React alatt általában JSX-et használunk a felület leírására.",
+        "concepts": [
+          "A JSX kifejezés egyetlen szülőelemet igényel, vagy Fragmentet.",
+          "A class helyett className szerepel React-ben.",
+          "A JavaScript-kifejezést kapcsos zárójelek közé tesszük.",
+          "A JSX-et fordító eszköz dolgozza fel; sima böngésző nem értelmezi önmagában."
+        ],
+        "code": "const nev = \"Anna\";\nconst elem = <section className=\"kartya\"><h1>Szia, {nev}!</h1></section>;",
+        "exercise": [
+          "Készíts bemutatkozó JSX kártyát.",
+          "Adj a cím alá dinamikusan egy életkort."
+        ],
+        "quiz": {
+          "question": "A JSX kifejezésekben JavaScript-értékek jeleníthetők meg kapcsos zárójellel.",
+          "options": [
+            "Igaz",
+            "Hamis"
+          ],
+          "answer": 0,
+          "explain": "Az állítás értékeléséhez figyeld a leckében bemutatott működési szabályt."
+        }
+      },
+      {
+        "id": "jsx-2",
+        "title": "Dinamikus értékek és attribútumok",
+        "level": "Kezdő",
+        "minutes": 22,
+        "overview": "A JSX attribútumokat és szöveges részeket a JavaScript-változókból is képes összeállítani. Az alapértelmezett szöveges értékek React-ben escape-elődnek, ami az XSS-kockázatot csökkenti.",
+        "concepts": [
+          "Kapcsos zárójelben kifejezés lehet, nem önálló if utasítás.",
+          "A style egy objektum React-ben.",
+          "Az eseménykezelők függvényreferenciákat kapnak.",
+          "A felhasználói szöveget ne tedd veszélyes HTML-befecskendezésbe."
+        ],
+        "code": "const cim = \"Tanulás\";\nconst aktiv = true;\nconst elem = <h2 style={{color: aktiv ? \"green\" : \"gray\"}}>{cim}</h2>;",
+        "exercise": [
+          "Készíts dinamikus üdvözlést névvel és állapottal.",
+          "Próbálj ki feltételes színváltást."
+        ],
+        "quiz": {
+          "question": "A JSX style attribútuma React-ben objektumot is elfogad.",
+          "options": [
+            "Igaz",
+            "Hamis"
+          ],
+          "answer": 0,
+          "explain": "Az állítás értékeléséhez figyeld a leckében bemutatott működési szabályt."
+        }
+      },
+      {
+        "id": "jsx-3",
+        "title": "Listák renderelése",
+        "level": "Középhaladó",
+        "minutes": 26,
+        "overview": "Az ismétlődő elemeket tömbből map segítségével rajzoljuk ki. A key segít a Reactnek az elemek azonosításában változáskor.",
+        "concepts": [
+          "A map minden elemre JSX-et állíthat elő.",
+          "A key legyen stabil és egyedi a testvérelemek között.",
+          "A tömbindex key-ként problémát okozhat átrendezhető listánál.",
+          "Szűréshez map előtt filter is használható."
+        ],
+        "code": "const leckek = [{id:1,nev:\"HTML\"},{id:2,nev:\"CSS\"}];\nconst lista = <ul>{leckek.map(l => <li key={l.id}>{l.nev}</li>)}</ul>;",
+        "exercise": [
+          "Jeleníts meg 5 kurzust tömbből.",
+          "Adj hozzá állapot szerinti szűrést."
+        ],
+        "quiz": {
+          "question": "A stabil key megkönnyíti a listatételek követését React számára.",
+          "options": [
+            "Igaz",
+            "Hamis"
+          ],
+          "answer": 0,
+          "explain": "Az állítás értékeléséhez figyeld a leckében bemutatott működési szabályt."
+        }
+      },
+      {
+        "id": "jsx-4",
+        "title": "Feltételes megjelenítés",
+        "level": "Középhaladó",
+        "minutes": 30,
+        "overview": "A felületen gyakran csak feltétel teljesülésekor jelenik meg egy elem. A JSX-ben használhatsz ternáris operátort vagy rövidzáras logikai kifejezést.",
+        "concepts": [
+          "A cond ? A : B kétágú választást ad.",
+          "A cond && <Elem/> csak igaz feltétel esetén renderel.",
+          "Figyelj, hogy 0 && elem esetén 0 is megjelenhet.",
+          "A bonyolult logikát célszerű a JSX-en kívül kiszámolni."
+        ],
+        "code": "const bejelentkezve = false;\nconst oldal = <main>{bejelentkezve ? <p>Üdv újra!</p> : <button>Belépés</button>}</main>;",
+        "exercise": [
+          "Készíts kártyát befejezett/befejezetlen állapottal.",
+          "Írj külön ágat a hiányzó adatokra."
+        ],
+        "quiz": {
+          "question": "A ternáris operátor három kifejezési részből áll.",
+          "options": [
+            "Igaz",
+            "Hamis"
+          ],
+          "answer": 0,
+          "explain": "Az állítás értékeléséhez figyeld a leckében bemutatott működési szabályt."
+        }
+      },
+      {
+        "id": "jsx-5",
+        "title": "Komponensek, props és gyerekek",
+        "level": "Haladó",
+        "minutes": 34,
+        "overview": "A JSX a komponensek összeállítását is támogatja. Egy komponens props bemenetet kap; a children helyen beágyazott tartalom jelenhet meg.",
+        "concepts": [
+          "A komponensnév nagybetűvel kezdődjön.",
+          "A props egy bemeneti objektum; ne módosítsd közvetlenül.",
+          "A children összetettebb komponenseket tesz lehetővé.",
+          "Az adatfolyam általában szülőtől gyermek felé halad."
+        ],
+        "code": "function Kartya({cim, children}) {\n return <article><h2>{cim}</h2><div>{children}</div></article>;\n}\nconst p = <Kartya cim=\"HTML\"><p>Első lecke</p></Kartya>;",
+        "exercise": [
+          "Írj újrafelhasználható figyelmeztetés komponenst.",
+          "Add át a szöveget és egy típust props segítségével."
+        ],
+        "quiz": {
+          "question": "A React-komponensek neve általában nagybetűvel kezdődik.",
+          "options": [
+            "Igaz",
+            "Hamis"
+          ],
+          "answer": 0,
+          "explain": "Az állítás értékeléséhez figyeld a leckében bemutatott működési szabályt."
+        }
+      },
+      {
+        "id": "jsx-6",
+        "title": "A JSX gyakori hibái",
+        "level": "Haladó",
+        "minutes": 38,
+        "overview": "A JSX fordító hamar jelez több szintaktikai hibát. A helyes lezárás, kulcsok és JavaScript-kifejezések tudatosítása sok időt takarít meg.",
+        "concepts": [
+          "Minden JSX-elem legyen lezárva, például <img />.",
+          "Több testvérelemnél Fragment: <>...</>.",
+          "A HTML for React JSX-ben htmlFor lesz.",
+          "A kommentek JSX-ben kapcsos zárójel + JS-komment formában szerepelnek."
+        ],
+        "code": "const UI = () => (\n <>\n   <label htmlFor=\"nev\">Név</label>\n   <input id=\"nev\" />\n   {/* Ez egy JSX-komment */}\n </>\n);",
+        "exercise": [
+          "Javíts ki egy rosszul lezárt JSX-részletet.",
+          "Cserélj class és for attribútumokat React-megfelelőjükre."
+        ],
+        "quiz": {
+          "question": "A JSX-ben az <input> tagot általában önlezáró formában írjuk.",
+          "options": [
+            "Igaz",
+            "Hamis"
+          ],
+          "answer": 0,
+          "explain": "Az állítás értékeléséhez figyeld a leckében bemutatott működési szabályt."
+        }
+      }
+    ]
+  },
+  {
+    "slug": "react",
+    "title": "React",
+    "icon": "⚛️",
+    "category": "Webfejlesztés",
+    "description": "Interaktív felületek komponensekkel, állapottal és hookokkal.",
+    "prereqs": [
+      "jsx",
+      "javascript"
+    ],
+    "setup": "Telepíts Node.js-t, majd: npm create vite@latest react-gyakorlas -- --template react; cd react-gyakorlas; npm install; npm run dev.",
+    "runtime": "local",
+    "lessons": [
+      {
+        "id": "react-1",
+        "title": "Komponensalapú gondolkodás",
+        "level": "Kezdő",
+        "minutes": 18,
+        "overview": "A React deklaratívan írja le a felületet: az aktuális adatokból előállítja, mit kell látni. A felületet kisebb, újrafelhasználható komponensekre bontjuk.",
+        "concepts": [
+          "A komponens függvény, amely React-elemeket ad vissza.",
+          "A props bemeneti adat, ne módosítsd közvetlenül.",
+          "A hierarchia átgondolása csökkenti a duplikációt.",
+          "A React nem helyettesíti a HTML, CSS és JavaScript alapjainak ismeretét."
+        ],
+        "code": "function Udvozlet({nev}) {\n return <h1>Szia, {nev}!</h1>;\n}\nexport default function App() {\n return <main><Udvozlet nev=\"Anna\" /></main>;\n}",
+        "exercise": [
+          "Rajzolj komponensfát portfólió-oldalhoz.",
+          "Készíts három különböző kártyát ugyanazzal a komponenssel."
+        ],
+        "quiz": {
+          "question": "A props bemeneti adatként szolgál a komponens számára.",
+          "options": [
+            "Igaz",
+            "Hamis"
+          ],
+          "answer": 0,
+          "explain": "Az állítás értékeléséhez figyeld a leckében bemutatott működési szabályt."
+        }
+      },
+      {
+        "id": "react-2",
+        "title": "useState és események",
+        "level": "Kezdő",
+        "minutes": 22,
+        "overview": "Állapotnak nevezzük azokat az adatokat, amelyek változására a felület frissül. Az állapotot setterrel állítsuk, ne közvetlen módosítással.",
+        "concepts": [
+          "A useState visszaadja az aktuális értéket és a beállítófüggvényt.",
+          "A setCount(c => c + 1) biztonságos korábbi állapotra épülő frissítés.",
+          "A kattintáskezelőnek függvényt adjunk, ne a meghívás eredményét.",
+          "A render egy számítás: ne módosíts közben külső állapotot."
+        ],
+        "code": "import {useState} from \"react\";\nfunction Szamlalo() {\n const [db,setDb] = useState(0);\n return <button onClick={() => setDb(x => x+1)}>Kattintások: {db}</button>;\n}",
+        "exercise": [
+          "Készíts számlálót növelő, csökkentő és nullázó gombbal.",
+          "Tiltsd a csökkentést nulla alatt."
+        ],
+        "quiz": {
+          "question": "A useState setter hívása új renderelést eredményezhet.",
+          "options": [
+            "Igaz",
+            "Hamis"
+          ],
+          "answer": 0,
+          "explain": "Az állítás értékeléséhez figyeld a leckében bemutatott működési szabályt."
+        }
+      },
+      {
+        "id": "react-3",
+        "title": "Űrlapok és vezérelt mezők",
+        "level": "Középhaladó",
+        "minutes": 26,
+        "overview": "Vezérelt űrlapnál a React-állapot tartalmazza az aktuális mezőértéket. Ez megkönnyíti az azonnali visszajelzést és az ellenőrzést.",
+        "concepts": [
+          "A value állapotból olvas, onChange frissíti az állapotot.",
+          "A submit esemény preventDefault metódusa megakadályozhatja az oldal újratöltését.",
+          "A bemenő adatokat ellenőrizni kell.",
+          "A hibát érthetően közöld, ne csak színnel jelezd."
+        ],
+        "code": "import {useState} from \"react\";\nfunction Nev() {\n const [nev,setNev]=useState(\"\");\n return <><input value={nev} onChange={e=>setNev(e.target.value)} /><p>Szia, {nev || \"vendég\"}!</p></>;\n}",
+        "exercise": [
+          "Készíts regisztrációs űrlapot e-mail és jelszó mezővel helyi validációval.",
+          "Ne küldj valódi jelszót tesztoldalra."
+        ],
+        "quiz": {
+          "question": "A vezérelt input értékét React-állapotból kapja.",
+          "options": [
+            "Igaz",
+            "Hamis"
+          ],
+          "answer": 0,
+          "explain": "Az állítás értékeléséhez figyeld a leckében bemutatott működési szabályt."
+        }
+      },
+      {
+        "id": "react-4",
+        "title": "Listák, kulcsok és adatáramlás",
+        "level": "Középhaladó",
+        "minutes": 30,
+        "overview": "Az ismétlődő felületeket gyakran tömbből állítjuk elő. Ha több komponensnek szüksége van ugyanarra az adatra, az állapotot közös szülőbe emelhetjük.",
+        "concepts": [
+          "A key legyen stabil és az adott listán belül egyedi.",
+          "A szülő propsban átadhat adatot és eseménykezelő függvényt.",
+          "A gyermek esemény révén kérhet állapotváltozást.",
+          "Az állapotot tartsd a lehető legalacsonyabb közös szülőben."
+        ],
+        "code": "function Sor({elem,torol}) {return <li>{elem.nev} <button onClick={()=>torol(elem.id)}>Törlés</button></li>;}\n// Szülőben: lista.map(e => <Sor key={e.id} elem={e} torol={torol}/>)",
+        "exercise": [
+          "Építs feladatlistát hozzáadással és törléssel.",
+          "Legyen minden feladatnak stabil azonosítója."
+        ],
+        "quiz": {
+          "question": "A React-listák key attribútuma a stabil azonosítást segíti.",
+          "options": [
+            "Igaz",
+            "Hamis"
+          ],
+          "answer": 0,
+          "explain": "Az állítás értékeléséhez figyeld a leckében bemutatott működési szabályt."
+        }
+      },
+      {
+        "id": "react-5",
+        "title": "useEffect, adatbetöltés",
+        "level": "Haladó",
+        "minutes": 34,
+        "overview": "Az effect külső rendszerekkel való szinkronizálásra szolgál, például előfizetés vagy hálózati kérés kezelésére. Nem minden számításhoz kell effect.",
+        "concepts": [
+          "A useEffect függőségi tömbje megmondja, milyen változásokkor fusson újra.",
+          "Takarító függvény felszabadítja az erőforrásokat.",
+          "Aszinkron kérésnél kezeld a loading és error állapotot.",
+          "Egyszerű, propsból számítható értéket ne tárolj felesleges külön állapotban."
+        ],
+        "code": "import {useEffect,useState} from \"react\";\nfunction Ora() {\n const [ido,setIdo]=useState(new Date());\n useEffect(()=>{const id=setInterval(()=>setIdo(new Date()),1000);return ()=>clearInterval(id);},[]);\n return <time>{ido.toLocaleTimeString(\"hu-HU\")}</time>;\n}",
+        "exercise": [
+          "Készíts digitális órát és ellenőrizd a takarító függvényt.",
+          "Gyakorold az adatbetöltés három állapotát."
+        ],
+        "quiz": {
+          "question": "A useEffect takarító függvénye segíthet a timer megszüntetésében.",
+          "options": [
+            "Igaz",
+            "Hamis"
+          ],
+          "answer": 0,
+          "explain": "Az állítás értékeléséhez figyeld a leckében bemutatott működési szabályt."
+        }
+      },
+      {
+        "id": "react-6",
+        "title": "Egy teljes alkalmazás szerkezete",
+        "level": "Haladó",
+        "minutes": 38,
+        "overview": "Növekvő alkalmazásnál válaszd szét a komponenseket, adatkezelést és üzleti logikát. A tesztelhetőség, hozzáférhetőség és hibakezelés fontosabb, mint a túl korai optimalizáció.",
+        "concepts": [
+          "Az ismétlődő UI külön komponensbe emelhető.",
+          "Az egyedi hook megoszthat viselkedést.",
+          "A React DevTools segíti a komponensfa vizsgálatát.",
+          "A beviteli mezők, gombok és címkék legyenek billentyűzettel használhatók."
+        ],
+        "code": "src/\n  App.jsx\n  components/\n    FeladatLista.jsx\n    FeladatSor.jsx\n  hooks/\n    useFeladatok.js\n  styles.css",
+        "exercise": [
+          "Készíts háromoldalas tanulási naplót Reactben.",
+          "Írj tesztet a feladat hozzáadása műveletre."
+        ],
+        "quiz": {
+          "question": "A komponensekre bontás segíti a karbantartást.",
+          "options": [
+            "Igaz",
+            "Hamis"
+          ],
+          "answer": 0,
+          "explain": "Az állítás értékeléséhez figyeld a leckében bemutatott működési szabályt."
+        }
+      }
+    ]
+  },
+  {
+    "slug": "python",
+    "title": "Python",
+    "icon": "🐍",
+    "category": "Programozás",
+    "description": "Python teljes alapjai, adatkezelés, fájlok, API-k és tesztelés.",
+    "prereqs": [
+      "alapok"
+    ],
+    "setup": "Telepíts Python 3-at: python.org. Ellenőrzés: python --version (vagy py --version Windowson).",
+    "runtime": "local",
+    "lessons": [
+      {
+        "id": "python-1",
+        "title": "Első program, változók és input",
+        "level": "Kezdő",
+        "minutes": 18,
+        "overview": "A Python olvasható szintaxisa miatt kezdőknek jó választás. A program soronként hajtódik végre, a behúzás pedig valódi jelentéssel bír. A felhasználói bemenet mindig szövegként érkezik.",
+        "concepts": [
+          "A print() kiírja az értéket a terminálra.",
+          "Az input() szöveget olvas, ezért számhoz int() vagy float() konverzió szükséges.",
+          "A változó típusát Python futás közben kezeli.",
+          "A f-string változóértékeket illeszt szövegbe."
+        ],
+        "code": "nev = input(\"Neved: \")\nkor = int(input(\"Korod: \"))\nprint(f\"Szia, {nev}! Jövőre {kor+1} éves leszel.\")",
+        "exercise": [
+          "Készíts két számból összeadó és átlagoló programot.",
+          "Kezeld az érvénytelen számbevitel lehetőségét."
+        ],
+        "quiz": {
+          "question": "A Python input() alapból string értéket ad.",
+          "options": [
+            "Igaz",
+            "Hamis"
+          ],
+          "answer": 0,
+          "explain": "Az állítás értékeléséhez figyeld a leckében bemutatott működési szabályt."
+        }
+      },
+      {
+        "id": "python-2",
+        "title": "Feltételek és ciklusok",
+        "level": "Kezdő",
+        "minutes": 22,
+        "overview": "A döntési ágakat if/elif/else segítségével írjuk le. Az ismétléshez for és while ciklust használunk. A hibás behúzás megváltoztathatja vagy megakadályozhatja a program futását.",
+        "concepts": [
+          "Az if után kettőspont és behúzott blokk következik.",
+          "A range(5) 0,1,2,3,4 értékeket ad.",
+          "A while feltételének egyszer hamissá kell válnia, ha nem akarunk végtelen ciklust.",
+          "Az enumerate indexet és értéket is ad."
+        ],
+        "code": "for i in range(1, 6):\n    if i % 2 == 0:\n        print(i, \"páros\")\n    else:\n        print(i, \"páratlan\")",
+        "exercise": [
+          "Készíts számkitaláló játékot random.randint használatával.",
+          "Számold a próbálkozásokat."
+        ],
+        "quiz": {
+          "question": "A range(5) 0-tól 4-ig ad egész számokat.",
+          "options": [
+            "Igaz",
+            "Hamis"
+          ],
+          "answer": 0,
+          "explain": "Az állítás értékeléséhez figyeld a leckében bemutatott működési szabályt."
+        }
+      },
+      {
+        "id": "python-3",
+        "title": "Listák, szótárak és halmazok",
+        "level": "Középhaladó",
+        "minutes": 26,
+        "overview": "Az összetett adattípusokkal több adatot tárolhatunk egyetlen változóban. A helyes tároló kiválasztása leegyszerűsíti az algoritmusokat.",
+        "concepts": [
+          "A list sorrendbe rendezett, módosítható elemeket tárol.",
+          "A dict kulcs–érték párokat tárol.",
+          "A set egyedi elemeket tartalmaz.",
+          "A tuple többnyire változatlan adatok csoportosítására alkalmas."
+        ],
+        "code": "jegyek = [5,4,3,5]\ntanulo = {\"nev\":\"Anna\",\"jegyek\":jegyek}\natlag = sum(tanulo[\"jegyek\"]) / len(jegyek)\nprint(tanulo[\"nev\"], round(atlag, 2))",
+        "exercise": [
+          "Írj szótári szógyakoriság-számlálót.",
+          "Bővítsd úgy, hogy a kis- és nagybetű ne számítson."
+        ],
+        "quiz": {
+          "question": "A dict kulcs–érték párokat tárol.",
+          "options": [
+            "Igaz",
+            "Hamis"
+          ],
+          "answer": 0,
+          "explain": "Az állítás értékeléséhez figyeld a leckében bemutatott működési szabályt."
+        }
+      },
+      {
+        "id": "python-4",
+        "title": "Függvények, modulok és csomagok",
+        "level": "Középhaladó",
+        "minutes": 30,
+        "overview": "A függvényekkel elkerülheted az ismétlődő kódot. A modul egy .py fájl, amelyet más programok importálhatnak. A virtuális környezet elkülöníti a csomagfüggőségeket.",
+        "concepts": [
+          "A def függvényt hoz létre.",
+          "A return értéket ad vissza.",
+          "A type hint dokumentálja a várt típust, de önmagában nem kényszeríti ki futáskor.",
+          "A venv külön projektkörnyezetet ad."
+        ],
+        "code": "def atlag(szamok: list[float]) -> float:\n    if not szamok:\n        raise ValueError(\"Üres lista\")\n    return sum(szamok)/len(szamok)\n\nprint(atlag([3, 4, 5]))",
+        "exercise": [
+          "Írj külön modult matematikai függvényekkel.",
+          "Készíts virtuális környezetet python -m venv .venv paranccsal."
+        ],
+        "quiz": {
+          "question": "A Python type hint alapból automatikusan megtilt minden rossz típusú futásidejű értéket.",
+          "options": [
+            "Igaz",
+            "Hamis"
+          ],
+          "answer": 1,
+          "explain": "Az állítás értékeléséhez figyeld a leckében bemutatott működési szabályt."
+        }
+      },
+      {
+        "id": "python-5",
+        "title": "Fájlok és kivételkezelés",
+        "level": "Haladó",
+        "minutes": 34,
+        "overview": "Valódi alkalmazások adatokat olvasnak és mentenek. A fájlkezelésnél a karakterkódolás és a hibák kezelése kiemelten fontos. A with blokk automatikus lezárást biztosít.",
+        "concepts": [
+          "A pathlib.Path platformfüggetlenebb útvonalkezelést ad.",
+          "A with megnyitja, majd lezárja a fájlt.",
+          "A try/except csak a várt hibatípusokat kezelje.",
+          "JSON fájlban strukturált adatot tárolhatunk."
+        ],
+        "code": "from pathlib import Path\nimport json\np = Path(\"adatok.json\")\np.write_text(json.dumps({\"nev\":\"Anna\"}, ensure_ascii=False), encoding=\"utf-8\")\ntry:\n    print(json.loads(p.read_text(encoding=\"utf-8\")))\nexcept (OSError, json.JSONDecodeError) as e:\n    print(\"Hiba:\", e)",
+        "exercise": [
+          "Készíts naplóprogramot, amely fájlba menti a bejegyzéseket.",
+          "Próbálj ki sérült JSON-fájlt és kezeld a hibát."
+        ],
+        "quiz": {
+          "question": "A with blokk automatikusan kezeli a fájl lezárását.",
+          "options": [
+            "Igaz",
+            "Hamis"
+          ],
+          "answer": 0,
+          "explain": "Az állítás értékeléséhez figyeld a leckében bemutatott működési szabályt."
+        }
+      },
+      {
+        "id": "python-6",
+        "title": "Osztályok, tesztelés és API-k",
+        "level": "Haladó",
+        "minutes": 38,
+        "overview": "Az objektumorientált megközelítés adatokat és hozzájuk tartozó műveleteket kapcsol össze. Tesztekkel ellenőrizhetjük az elvárt eredményt; API-knál a hibás és hiányzó válaszokat is kezelni kell.",
+        "concepts": [
+          "A class osztályt definiál; __init__ inicializál.",
+          "A self az aktuális példányra utal.",
+          "Az unittest standard könyvtári tesztkeretrendszer.",
+          "Hálózati kéréseknél használj időkorlátot és kezeld a státuszkódokat."
+        ],
+        "code": "class Szamla:\n    def __init__(self): self.egyenleg = 0\n    def befizet(self, osszeg):\n        if osszeg <= 0: raise ValueError(\"Pozitív összeg kell\")\n        self.egyenleg += osszeg\n\ns = Szamla()\ns.befizet(500)\nprint(s.egyenleg)",
+        "exercise": [
+          "Készíts egy Könyvtár osztályt könyvek hozzáadásával és keresésével.",
+          "Írj legalább 3 tesztet érvénytelen bemenetekre is."
+        ],
+        "quiz": {
+          "question": "A self az adott osztálypéldányra utal.",
+          "options": [
+            "Igaz",
+            "Hamis"
+          ],
+          "answer": 0,
+          "explain": "Az állítás értékeléséhez figyeld a leckében bemutatott működési szabályt."
+        }
+      }
+    ]
+  },
+  {
+    "slug": "php",
+    "title": "PHP",
+    "icon": "🐘",
+    "category": "Webfejlesztés",
+    "description": "Dinamikus szerveroldali weboldalak, űrlapok, adatbázis, biztonság.",
+    "prereqs": [
+      "html",
+      "javascript"
+    ],
+    "setup": "PHP telepítése után terminálban: php -v; projektmappában php -S localhost:8000; böngészőben localhost:8000.",
+    "runtime": "local",
+    "lessons": [
+      {
+        "id": "php-1",
+        "title": "PHP futtatása és alapok",
+        "level": "Kezdő",
+        "minutes": 18,
+        "overview": "A PHP szerveroldali nyelv: a PHP-kód lefut a szerveren, és a böngésző tipikusan a kész HTML-t kapja meg. A PHP-t nem lehet egy .php fájl dupla kattintásával a böngészőben végrehajtani.",
+        "concepts": [
+          "A PHP-kód <?php ... ?> blokkokban szerepelhet.",
+          "A változók $ jellel kezdődnek.",
+          "Az echo szöveget ír ki.",
+          "A pontosvessző általában lezárja az utasításokat."
+        ],
+        "code": "<?php\n$nev = \"Anna\";\n$kor = 18;\necho \"Szia, \" . htmlspecialchars($nev, ENT_QUOTES, \"UTF-8\");\necho \" Kor: \" . $kor;\n?>",
+        "exercise": [
+          "Telepíts PHP-t, majd indíts fejlesztői szervert php -S localhost:8000 paranccsal.",
+          "Készíts dinamikus üdvözlőoldalt."
+        ],
+        "quiz": {
+          "question": "A PHP általában a szerveren fut, nem közvetlenül a böngészőben.",
+          "options": [
+            "Igaz",
+            "Hamis"
+          ],
+          "answer": 0,
+          "explain": "Az állítás értékeléséhez figyeld a leckében bemutatott működési szabályt."
+        }
+      },
+      {
+        "id": "php-2",
+        "title": "Tömbök és függvények",
+        "level": "Kezdő",
+        "minutes": 22,
+        "overview": "A PHP többféle tömböt kezel, amelyek egyszerre viselkedhetnek listaként és asszociatív adatszerkezetként. A foreach gyakori módszer elemek bejárására.",
+        "concepts": [
+          "Az asszociatív tömb kulcs–érték párokat tárol.",
+          "A foreach bejárja az elemeket.",
+          "A függvényparaméter és visszatérési típus típusozható.",
+          "A strict_types segíti a következetes típuskezelést."
+        ],
+        "code": "<?php\ndeclare(strict_types=1);\nfunction osszeg(array $arak): int { return array_sum($arak); }\n$termekek = [\"tea\" => 450, \"kave\" => 750];\nforeach($termekek as $nev => $ar) echo \"$nev: $ar Ft\\n\";\necho osszeg(array_values($termekek));",
+        "exercise": [
+          "Készíts terméklistát árakkal.",
+          "Írj függvényt az ÁFA-val növelt összeg számításához."
+        ],
+        "quiz": {
+          "question": "A foreach képes asszociatív tömbök kulcsait és értékeit bejárni.",
+          "options": [
+            "Igaz",
+            "Hamis"
+          ],
+          "answer": 0,
+          "explain": "Az állítás értékeléséhez figyeld a leckében bemutatott működési szabályt."
+        }
+      },
+      {
+        "id": "php-3",
+        "title": "Űrlapok és bemeneti ellenőrzés",
+        "level": "Középhaladó",
+        "minutes": 26,
+        "overview": "A felhasználótól érkező adat soha nem tekinthető megbízhatónak. A PHP a $_POST és $_GET tömbökön keresztül férhet hozzá a kérés adataihoz; minden adatot validálni kell.",
+        "concepts": [
+          "A trim eltávolítja a szélső whitespace karaktereket.",
+          "Az üres és túl hosszú értékekre külön figyelj.",
+          "A kimenetet HTML-kontextusban htmlspecialchars védi.",
+          "A kliensoldali required ellenőrzés nem helyettesíti a szerveroldalit."
+        ],
+        "code": "<?php\n$nev = trim($_POST[\"nev\"] ?? \"\");\nif ($nev === \"\" || mb_strlen($nev) > 60) {\n  http_response_code(400); echo \"Hibás név\";\n} else {\n  echo \"Szia, \" . htmlspecialchars($nev, ENT_QUOTES, \"UTF-8\");\n}\n?>",
+        "exercise": [
+          "Készíts kapcsolatfelvételi űrlapot és validáld az e-mail-címet filter_var használatával.",
+          "Ellenőrizd üres és túl hosszú bemenettel."
+        ],
+        "quiz": {
+          "question": "A felhasználói bemenetet szerveroldalon is érdemes ellenőrizni.",
+          "options": [
+            "Igaz",
+            "Hamis"
+          ],
+          "answer": 0,
+          "explain": "Az állítás értékeléséhez figyeld a leckében bemutatott működési szabályt."
+        }
+      },
+      {
+        "id": "php-4",
+        "title": "Adatbázis PDO-val",
+        "level": "Középhaladó",
+        "minutes": 30,
+        "overview": "A perzisztens adatok tárolására sok PHP-projekt SQL-adatbázist használ. A PDO egységes API-t ad több adatbázishoz. A felhasználói értékeket paraméterezett lekérdezésben add át.",
+        "concepts": [
+          "A prepared statement a paramétereket elkülöníti az SQL-szintaxistól.",
+          "A WHERE feltétel szűr.",
+          "Indexek gyorsíthatnak keresést, de tárolási költségük van.",
+          "Az adatbázis hitelesítési adatait ne tedd nyilvános forráskódba."
+        ],
+        "code": "<?php\n$db = new PDO(\"sqlite:tanulok.db\");\n$db->exec(\"CREATE TABLE IF NOT EXISTS users(id INTEGER PRIMARY KEY, name TEXT)\");\n$stmt = $db->prepare(\"INSERT INTO users(name) VALUES (?)\");\n$stmt->execute([\"Anna\"]);\n?>",
+        "exercise": [
+          "Készíts egyszerű jegyzet CRUD-alkalmazást helyi SQLite adatbázissal.",
+          "Minden felhasználói értéket paraméterezve adj át."
+        ],
+        "quiz": {
+          "question": "A paraméterezett SQL-lekérdezés segít az SQL injection megelőzésében.",
+          "options": [
+            "Igaz",
+            "Hamis"
+          ],
+          "answer": 0,
+          "explain": "Az állítás értékeléséhez figyeld a leckében bemutatott működési szabályt."
+        }
+      },
+      {
+        "id": "php-5",
+        "title": "Munkamenetek és hitelesítés",
+        "level": "Haladó",
+        "minutes": 34,
+        "overview": "A bejelentkezésnél a szervernek biztonságosan kell kezelnie a munkamenetet. A jelszavakat nem tároljuk egyszerű szövegként, hanem korszerű jelszóhashelési függvényt alkalmazunk.",
+        "concepts": [
+          "A session_start elindítja a PHP munkamenetkezelést.",
+          "password_hash tárolható jelszóhash-t készít.",
+          "password_verify ellenőrzi a megadott jelszót.",
+          "A jogosultságellenőrzésnek minden védett műveletnél meg kell történnie."
+        ],
+        "code": "<?php\n$hash = password_hash(\"pelda-jelszo\", PASSWORD_DEFAULT);\nif (password_verify(\"pelda-jelszo\", $hash)) {\n  echo \"Helyes jelszó\";\n}\n?>",
+        "exercise": [
+          "Írj külön hitelesítési folyamatábrát.",
+          "Adj hozzá CSRF-védelmet és session-id megújítást egy helyi próbaalkalmazáshoz."
+        ],
+        "quiz": {
+          "question": "A jelszavakat biztonságos hash formájában érdemes tárolni.",
+          "options": [
+            "Igaz",
+            "Hamis"
+          ],
+          "answer": 0,
+          "explain": "Az állítás értékeléséhez figyeld a leckében bemutatott működési szabályt."
+        }
+      },
+      {
+        "id": "php-6",
+        "title": "Projektstruktúra és élesítés",
+        "level": "Haladó",
+        "minutes": 38,
+        "overview": "Egy működő PHP-oldalnál fontos a függőségek elkülönítése, a hibák naplózása és a helyes szerverkonfiguráció. A fejlesztői szerver nem éles terhelésre készült.",
+        "concepts": [
+          "A Composer a PHP ökoszisztéma csomagkezelője.",
+          "A .env titkokat csak megfelelően védett környezetben használd.",
+          "A hibát naplózd, ne mutasd a végfelhasználónak a részletes stack trace-t.",
+          "HTTPS és megfelelő frissítések szükségesek éles üzemnél."
+        ],
+        "code": "composer init\ncomposer install\n# fejlesztői szerver:\nphp -S localhost:8000 -t public",
+        "exercise": [
+          "Tervezd meg egy jegyzetapp mappastruktúráját.",
+          "Írj ellenőrzőlistát az éles környezet biztonsági lépéseiről."
+        ],
+        "quiz": {
+          "question": "A php -S fejlesztői szerver önmagában nem ajánlott éles kiszolgálásra.",
+          "options": [
+            "Igaz",
+            "Hamis"
+          ],
+          "answer": 0,
+          "explain": "Az állítás értékeléséhez figyeld a leckében bemutatott működési szabályt."
+        }
+      }
+    ]
+  },
+  {
+    "slug": "csharp",
+    "title": "C#",
+    "icon": "💠",
+    "category": "Programozás",
+    "description": "Erősen típusos .NET nyelv, objektumorientált programozás és LINQ.",
+    "prereqs": [
+      "alapok"
+    ],
+    "setup": "Telepíts .NET SDK-t a dotnet.microsoft.com oldalról; dotnet new console -n Gyakorlas; cd Gyakorlas; dotnet run.",
+    "runtime": "local",
+    "lessons": [
+      {
+        "id": "csharp-1",
+        "title": "C# és a .NET SDK",
+        "level": "Kezdő",
+        "minutes": 18,
+        "overview": "A C# modern, erősen típusos programozási nyelv. A .NET SDK fordítót, futtatókörnyezetet és fejlesztői eszközöket ad; konzolos és webszerveres programok több rendszeren is készíthetők.",
+        "concepts": [
+          "A dotnet --version mutatja a telepített SDK verzióját.",
+          "A dotnet new console új konzolprojektet hoz létre.",
+          "A dotnet run lefordítja és elindítja az alkalmazást.",
+          "A C# megkülönbözteti a kis- és nagybetűt."
+        ],
+        "code": "// Program.cs\nConsole.WriteLine(\"Szia, világ!\");\nstring nev = \"Anna\";\nint kor = 20;\nConsole.WriteLine($\"{nev} {kor} éves.\");",
+        "exercise": [
+          "Telepíts .NET SDK-t.",
+          "Készíts új konzolprojektet és írj ki saját üdvözlést."
+        ],
+        "quiz": {
+          "question": "A C# a .NET ökoszisztémában használható.",
+          "options": [
+            "Igaz",
+            "Hamis"
+          ],
+          "answer": 0,
+          "explain": "Az állítás értékeléséhez figyeld a leckében bemutatott működési szabályt."
+        }
+      },
+      {
+        "id": "csharp-2",
+        "title": "Típusok és kifejezések",
+        "level": "Kezdő",
+        "minutes": 22,
+        "overview": "A C# típusai már fordításkor sok hibát megelőznek. A számok, karakterláncok és logikai értékek különböző műveletekre alkalmasak.",
+        "concepts": [
+          "Az int egész szám, a double lebegőpontos szám, a decimal gyakran pénzügyi értékekhez megfelelő.",
+          "A bool igaz/hamis értéket tárol.",
+          "A var típuskövetkeztetést jelent, nem dinamikus típust.",
+          "A nullable típus ? jelöléssel enged null értéket."
+        ],
+        "code": "decimal ar = 1990.50m;\nint db = 3;\ndecimal osszeg = ar * db;\nConsole.WriteLine($\"Összesen: {osszeg:N2} Ft\");",
+        "exercise": [
+          "Készíts pénztárprogramot több termékkel.",
+          "Próbáld ki a decimal és double közötti különbséget."
+        ],
+        "quiz": {
+          "question": "A var C#-ban fordításidejű típuskövetkeztetést is jelenthet.",
+          "options": [
+            "Igaz",
+            "Hamis"
+          ],
+          "answer": 0,
+          "explain": "Az állítás értékeléséhez figyeld a leckében bemutatott működési szabályt."
+        }
+      },
+      {
+        "id": "csharp-3",
+        "title": "Feltételek, ciklusok és kollekciók",
+        "level": "Középhaladó",
+        "minutes": 26,
+        "overview": "A C# is támogat feltételeket, ciklusokat és generikus gyűjteményeket. A foreach kényelmes bejáráshoz, a List<T> dinamikus listákhoz használható.",
+        "concepts": [
+          "Az if/else döntési ág, a switch több esetet kezel.",
+          "A for index-alapú, a foreach elem-alapú ciklus.",
+          "A List<int> egész számok listája.",
+          "A Dictionary<TKey,TValue> kulcs–érték tároló."
+        ],
+        "code": "var pontok = new List<int> { 10, 20, 30 };\nforeach (var p in pontok) {\n    if (p >= 20) Console.WriteLine(p);\n}\nConsole.WriteLine(pontok.Average());",
+        "exercise": [
+          "Készíts osztályzatátlag-számítót listából.",
+          "Adj hozzá értékelési kategóriát switch expressionnel."
+        ],
+        "quiz": {
+          "question": "A foreach kollekciók elemein tud végigmenni.",
+          "options": [
+            "Igaz",
+            "Hamis"
+          ],
+          "answer": 0,
+          "explain": "Az állítás értékeléséhez figyeld a leckében bemutatott működési szabályt."
+        }
+      },
+      {
+        "id": "csharp-4",
+        "title": "Metódusok és hibakezelés",
+        "level": "Középhaladó",
+        "minutes": 30,
+        "overview": "A metódusok kisebb egységekre bontják a kódot. A kivételek jelzik a sikertelen műveleteket, amelyeket érdemes a megfelelő szinten kezelni.",
+        "concepts": [
+          "A metódus megadhat visszatérési típust és paramétereket.",
+          "A TryParse nem dob kivételt hibás számbevitelnél.",
+          "A try/catch valóban kivételes hibák kezelésére való.",
+          "A finally erőforrás-felszabadításnál hasznos lehet."
+        ],
+        "code": "static int Negyzet(int x) => x * x;\nConsole.Write(\"Szám: \");\nif (int.TryParse(Console.ReadLine(), out int szam))\n    Console.WriteLine(Negyzet(szam));\nelse\n    Console.WriteLine(\"Érvénytelen szám.\");",
+        "exercise": [
+          "Készíts számológépet, amely ellenőrzi a nullával osztást.",
+          "Bontsd külön metódusokra a műveleteket."
+        ],
+        "quiz": {
+          "question": "A TryParse használható hibás számbevitel kezelésére kivétel nélkül.",
+          "options": [
+            "Igaz",
+            "Hamis"
+          ],
+          "answer": 0,
+          "explain": "Az állítás értékeléséhez figyeld a leckében bemutatott működési szabályt."
+        }
+      },
+      {
+        "id": "csharp-5",
+        "title": "Osztályok, objektumok, interfészek",
+        "level": "Haladó",
+        "minutes": 34,
+        "overview": "Az objektumorientált programozás adattal rendelkező entitásokat és viselkedést modellez. Az interfész szerződést ír le, amelyet többféle megvalósítás teljesíthet.",
+        "concepts": [
+          "A class osztályt, a new példányt hoz létre.",
+          "A property ellenőrzött adathozzáférést adhat.",
+          "Az öröklés nem mindig jobb, mint a kompozíció.",
+          "Az interface a külső szerződést határozza meg."
+        ],
+        "code": "public class Termek {\n    public string Nev { get; init; } = \"\";\n    public decimal Ar { get; init; }\n    public string Leiras() => $\"{Nev}: {Ar} Ft\";\n}\nvar t = new Termek { Nev = \"Tea\", Ar = 650m };\nConsole.WriteLine(t.Leiras());",
+        "exercise": [
+          "Modellezz Könyv és Könyvtár osztályokat.",
+          "Hozz létre egy interfészt a kereshető elemekhez."
+        ],
+        "quiz": {
+          "question": "Az interfész egy típusszerződést írhat elő.",
+          "options": [
+            "Igaz",
+            "Hamis"
+          ],
+          "answer": 0,
+          "explain": "Az állítás értékeléséhez figyeld a leckében bemutatott működési szabályt."
+        }
+      },
+      {
+        "id": "csharp-6",
+        "title": "LINQ, async és tesztelés",
+        "level": "Haladó",
+        "minutes": 38,
+        "overview": "A LINQ deklaratív adatszűrést és átalakítást ad. Az async/await I/O műveleteknél segít az erőforrások hatékony kihasználásában, de nem tesz automatikusan mindent párhuzamossá.",
+        "concepts": [
+          "A Where szűr, a Select átalakít.",
+          "Az OrderBy sorba rendez.",
+          "Az await egy Task befejeződésére vár.",
+          "A tesztek ellenőrzik az elvárt eredményeket és szélső eseteket."
+        ],
+        "code": "var ertekek = new[] { 2, 5, 8, 11 };\nvar parosNegyzetek = ertekek.Where(x => x % 2 == 0).Select(x => x*x);\nConsole.WriteLine(string.Join(\", \", parosNegyzetek));",
+        "exercise": [
+          "Készíts termékszűrő és -rendező programot LINQ-val.",
+          "Írj 3 automatikus tesztet a számolási függvényeidre."
+        ],
+        "quiz": {
+          "question": "A LINQ Where segítségével adatok szűrhetők.",
+          "options": [
+            "Igaz",
+            "Hamis"
+          ],
+          "answer": 0,
+          "explain": "Az állítás értékeléséhez figyeld a leckében bemutatott működési szabályt."
+        }
+      }
+    ]
+  },
+  {
+    "slug": "console",
+    "title": "C# Console App",
+    "icon": "⌨️",
+    "category": "Asztali alkalmazások",
+    "description": "Valódi konzolos programok fájlkezeléssel, menüvel és tesztekkel.",
+    "prereqs": [
+      "csharp"
+    ],
+    "setup": "Windows, macOS vagy Linux rendszeren telepítsd a .NET SDK-t; dotnet new console -n ElsoApp; cd ElsoApp; dotnet run.",
+    "runtime": "local",
+    "lessons": [
+      {
+        "id": "console-1",
+        "title": "Konzolos projekt létrehozása",
+        "level": "Kezdő",
+        "minutes": 18,
+        "overview": "A konzolalkalmazás az inputot és outputot szövegként kezeli. Kiváló tanuláshoz, automatizáláshoz és kis adminisztratív eszközökhöz. A Program.cs fájl tartalmazhat top-level utasításokat.",
+        "concepts": [
+          "A dotnet new console létrehozza a .csproj és Program.cs fájlt.",
+          "A Console.Write kérés után ugyanazon a soron hagyja a kurzort.",
+          "A Console.ReadLine szöveget vagy null értéket adhat.",
+          "A belépési pontot a runtime indítja."
+        ],
+        "code": "Console.Write(\"Hogy hívnak? \");\nstring? nev = Console.ReadLine();\nConsole.WriteLine($\"Szia, {nev ?? \"ismeretlen\"}!\");",
+        "exercise": [
+          "Készíts kérdezz-felelek programot 5 kérdéssel.",
+          "Írj összegzést a végén."
+        ],
+        "quiz": {
+          "question": "A Console.ReadLine felhasználói szöveget olvas a konzolból.",
+          "options": [
+            "Igaz",
+            "Hamis"
+          ],
+          "answer": 0,
+          "explain": "Az állítás értékeléséhez figyeld a leckében bemutatott működési szabályt."
+        }
+      },
+      {
+        "id": "console-2",
+        "title": "Menüvezérelt alkalmazás",
+        "level": "Kezdő",
+        "minutes": 22,
+        "overview": "A menü lehetővé teszi, hogy a felhasználó több művelet közül válasszon. A jó menü kezeli a hibás választ és lehetőséget ad a kilépésre.",
+        "concepts": [
+          "A do/while legalább egyszer lefut.",
+          "A switch több lehetőséget kezel.",
+          "A hibás input ne állítsa le váratlanul a programot.",
+          "A funkciókat érdemes külön metódusokra bontani."
+        ],
+        "code": "string? valasz;\ndo {\n Console.WriteLine(\"1. Köszönés | 0. Kilépés\");\n valasz = Console.ReadLine();\n switch(valasz) {\n  case \"1\": Console.WriteLine(\"Szia!\"); break;\n  case \"0\": break;\n  default: Console.WriteLine(\"Ismeretlen opció.\"); break;\n }\n} while(valasz != \"0\");",
+        "exercise": [
+          "Készíts teendőlista-menüt hozzáadással, listázással, törléssel.",
+          "Adj külön hibajelzést rossz menüpontnál."
+        ],
+        "quiz": {
+          "question": "A switch több menüválasztás kezelésére alkalmas.",
+          "options": [
+            "Igaz",
+            "Hamis"
+          ],
+          "answer": 0,
+          "explain": "Az állítás értékeléséhez figyeld a leckében bemutatott működési szabályt."
+        }
+      },
+      {
+        "id": "console-3",
+        "title": "Adatmodell és rétegek",
+        "level": "Középhaladó",
+        "minutes": 26,
+        "overview": "Amikor nő a program, különválasztjuk az adatmodellt, az üzleti logikát és a konzolos megjelenítést. Így a szabályok könnyebben tesztelhetők és később akár grafikus felület is építhető hozzájuk.",
+        "concepts": [
+          "A modell osztály az adatot reprezentálja.",
+          "A szolgáltatás logikai műveleteket végez.",
+          "A Console a felület szerepét tölti be.",
+          "Ne szórd szét a ReadLine hívásokat az üzleti logikában."
+        ],
+        "code": "public record Feladat(int Id, string Cim, bool Kesz);\nvar feladatok = new List<Feladat>();\nfeladatok.Add(new Feladat(1, \"C# gyakorlás\", false));\nforeach(var f in feladatok) Console.WriteLine($\"{f.Id}: {f.Cim}\");",
+        "exercise": [
+          "Tervezd meg a Feladatkezelo szolgáltatást.",
+          "Írj metódust az elkészült feladatok számolására."
+        ],
+        "quiz": {
+          "question": "A konzolos megjelenítés és az üzleti szabályok különválaszthatók.",
+          "options": [
+            "Igaz",
+            "Hamis"
+          ],
+          "answer": 0,
+          "explain": "Az állítás értékeléséhez figyeld a leckében bemutatott működési szabályt."
+        }
+      },
+      {
+        "id": "console-4",
+        "title": "Adatok mentése JSON-fájlba",
+        "level": "Középhaladó",
+        "minutes": 30,
+        "overview": "A program bezárásakor a memóriában levő adatok elvesznek, ezért tartós tároláshoz fájl vagy adatbázis kell. A JSON kényelmes kis projektekhez.",
+        "concepts": [
+          "A System.Text.Json képes objektumokat JSON-ná alakítani.",
+          "A File.WriteAllText fájlba ír, a ReadAllText olvas.",
+          "A hiányzó vagy sérült fájlt kezeld.",
+          "Érdemes tartalék mentést vagy biztonságosabb atomi mentést tervezni."
+        ],
+        "code": "using System.Text.Json;\nvar nevek = new List<string> { \"Anna\", \"Béla\" };\nFile.WriteAllText(\"nevek.json\", JsonSerializer.Serialize(nevek));\nvar beolvasva = JsonSerializer.Deserialize<List<string>>(File.ReadAllText(\"nevek.json\"));\nConsole.WriteLine(string.Join(\", \", beolvasva ?? new()));",
+        "exercise": [
+          "Mentsd és töltsd vissza a teendőlistádat.",
+          "Kezeld a nem létező fájlt és a hibás JSON-t."
+        ],
+        "quiz": {
+          "question": "A JSON-fájl felhasználható konzolapp tartós adatainak tárolására.",
+          "options": [
+            "Igaz",
+            "Hamis"
+          ],
+          "answer": 0,
+          "explain": "Az állítás értékeléséhez figyeld a leckében bemutatott működési szabályt."
+        }
+      },
+      {
+        "id": "console-5",
+        "title": "Argumentumok és naplózás",
+        "level": "Haladó",
+        "minutes": 34,
+        "overview": "A komolyabb konzoleszközök parancssori argumentumokat fogadnak, így más programokból is meghívhatók. A kilépési kód jelzi a sikeres vagy sikertelen futást.",
+        "concepts": [
+          "A args tömb tartalmazza a parancssori argumentumokat.",
+          "A Console.Error hibakimenet, a Console.Out normál kimenet.",
+          "A 0 kilépési kód általában sikert jelez.",
+          "A bemeneteket ellenőrizd és írj érthető súgót."
+        ],
+        "code": "if (args.Length == 0) {\n Console.Error.WriteLine(\"Használat: app <név>\");\n return 1;\n}\nConsole.WriteLine($\"Szia, {args[0]}!\");\nreturn 0;",
+        "exercise": [
+          "Bővítsd az appot --help kapcsolóval.",
+          "Készíts hibás bemenetet és ellenőrizd a kilépési kódot."
+        ],
+        "quiz": {
+          "question": "Az alkalmazás külön hibakimenetet is használhat.",
+          "options": [
+            "Igaz",
+            "Hamis"
+          ],
+          "answer": 0,
+          "explain": "Az állítás értékeléséhez figyeld a leckében bemutatott működési szabályt."
+        }
+      },
+      {
+        "id": "console-6",
+        "title": "Önálló konzolos projekt",
+        "level": "Haladó",
+        "minutes": 38,
+        "overview": "Egy teljes konzolalkalmazás tervezésekor az adatok, a funkciók, a hibakezelés és a tesztek együtt alkotnak minőséget. Kis scope-pal kezdj, de készülj a bővítésre.",
+        "concepts": [
+          "Követelmények: adatfelvitel, listázás, módosítás, mentés, kilépés.",
+          "Azonosítókat használj index helyett, ha a lista rendeződhet.",
+          "Tesztelj üres, túl hosszú és érvénytelen bemenettel.",
+          "A README tartalmazzon telepítési és futtatási lépéseket."
+        ],
+        "code": "// Ötlet: Jegyzetfüzet alkalmazás\n// Parancsok: add, list, delete, search, export\n// Adattárolás: jegyzetek.json\n// Tesztek: üres szöveg, nem létező ID, hibás JSON",
+        "exercise": [
+          "Készíts működő jegyzetfüzetet menüvel és JSON-mentéssel.",
+          "Adj hozzá legalább 5 automatikus tesztet."
+        ],
+        "quiz": {
+          "question": "Az üzleti logika tesztelhető konzol nélkül is, ha különválasztod.",
+          "options": [
+            "Igaz",
+            "Hamis"
+          ],
+          "answer": 0,
+          "explain": "Az állítás értékeléséhez figyeld a leckében bemutatott működési szabályt."
+        }
+      }
+    ]
+  },
+  {
+    "slug": "wpf",
+    "title": "WPF",
+    "icon": "🪟",
+    "category": "Asztali alkalmazások",
+    "description": "Windowsos grafikus .NET-alkalmazások XAML-lel és MVVM-mintával.",
+    "prereqs": [
+      "csharp",
+      "console"
+    ],
+    "setup": "Kizárólag Windows: Visual Studio Community (.NET desktop development) vagy Windowsos .NET SDK. A böngészőben itt csak a kódot tanulmányozhatod.",
+    "runtime": "local",
+    "lessons": [
+      {
+        "id": "wpf-1",
+        "title": "Mi a WPF és mire való?",
+        "level": "Kezdő",
+        "minutes": 18,
+        "overview": "A Windows Presentation Foundation Windowsra készült .NET grafikus felületi keretrendszer. Nem fut a böngészőben, és a klasszikus WPF-célrendszer Windows. A felület XAML-lel írható le.",
+        "concepts": [
+          "A WPF nem webes technológia; Windows szükséges a tényleges futtatáshoz.",
+          "A XAML deklaratív UI-leíró nyelv.",
+          "A code-behind C# kóddal kezeli a felület eseményeit.",
+          "A projekt .NET Windows Desktop SDK-t céloz."
+        ],
+        "code": "dotnet new wpf -n ElsoWpf\ncd ElsoWpf\ndotnet run\n# Windows alatt, telepített .NET SDK-val",
+        "exercise": [
+          "Telepíts Visual Studio Community-t Windowsra .NET desktop development munkaterheléssel.",
+          "Indíts üres WPF ablakot."
+        ],
+        "quiz": {
+          "question": "A WPF alkalmazás közvetlenül HTML-oldalként fut a böngészőben.",
+          "options": [
+            "Igaz",
+            "Hamis"
+          ],
+          "answer": 1,
+          "explain": "Az állítás értékeléséhez figyeld a leckében bemutatott működési szabályt."
+        }
+      },
+      {
+        "id": "wpf-2",
+        "title": "XAML és alap vezérlők",
+        "level": "Kezdő",
+        "minutes": 22,
+        "overview": "A WPF felületet egymásba ágyazott XAML-elemekből állítjuk össze. Button, TextBox, TextBlock és más vezérlők kombinálásával készülnek az alkalmazások.",
+        "concepts": [
+          "A Window az alkalmazás ablaka.",
+          "A Grid sorokat és oszlopokat kezel.",
+          "A StackPanel egy irányba rendezi a gyermekeket.",
+          "A Margin külső térközt, a Padding belsőt ad az arra alkalmas vezérlőkön."
+        ],
+        "code": "<Window x:Class=\"ElsoWpf.MainWindow\" xmlns=\"http://schemas.microsoft.com/winfx/2006/xaml/presentation\" xmlns:x=\"http://schemas.microsoft.com/winfx/2006/xaml\" Title=\"Első WPF\" Height=\"260\" Width=\"400\">\n  <StackPanel Margin=\"20\">\n    <TextBlock Text=\"Szia, WPF!\" FontSize=\"24\"/>\n    <TextBox x:Name=\"NevMezo\" Margin=\"0,12\"/>\n    <Button Content=\"Köszönés\" Click=\"Koszon_Click\"/>\n  </StackPanel>\n</Window>",
+        "exercise": [
+          "Készíts beviteli mezőt és gombot.",
+          "Kísérletezz Grid és StackPanel elrendezéssel."
+        ],
+        "quiz": {
+          "question": "A XAML leírja a WPF-felület szerkezetét.",
+          "options": [
+            "Igaz",
+            "Hamis"
+          ],
+          "answer": 0,
+          "explain": "Az állítás értékeléséhez figyeld a leckében bemutatott működési szabályt."
+        }
+      },
+      {
+        "id": "wpf-3",
+        "title": "Események és code-behind",
+        "level": "Középhaladó",
+        "minutes": 26,
+        "overview": "Az eseményekhez C# eseménykezelőket kapcsolhatsz. Ez kis felületnél egyszerű, de nagyobb alkalmazásokban jobb elkülöníteni az üzleti logikát a UI-tól.",
+        "concepts": [
+          "A Click esemény gombnyomáskor aktiválódik.",
+          "A sender az esemény forrását azonosítja.",
+          "A MessageBox egyszerű párbeszédet jeleníthet meg.",
+          "A felhasználói inputot validálni kell."
+        ],
+        "code": "// MainWindow.xaml.cs részlet\nprivate void Koszon_Click(object sender, RoutedEventArgs e)\n{\n    var nev = NevMezo.Text.Trim();\n    MessageBox.Show(string.IsNullOrEmpty(nev) ? \"Adj meg egy nevet!\" : $\"Szia, {nev}!\");\n}",
+        "exercise": [
+          "Készíts kétgombos számológépet.",
+          "Kezeld az üres vagy nem számszerű bemenetet."
+        ],
+        "quiz": {
+          "question": "WPF-gombhoz rendelhető Click eseménykezelő.",
+          "options": [
+            "Igaz",
+            "Hamis"
+          ],
+          "answer": 0,
+          "explain": "Az állítás értékeléséhez figyeld a leckében bemutatott működési szabályt."
+        }
+      },
+      {
+        "id": "wpf-4",
+        "title": "Adatkötés és INotifyPropertyChanged",
+        "level": "Középhaladó",
+        "minutes": 30,
+        "overview": "A WPF egyik erőssége az adatkötés: a UI mezői objektumok tulajdonságaihoz kapcsolhatók. Az INotifyPropertyChanged jelzi, hogy a forrásérték módosult.",
+        "concepts": [
+          "A DataContext az adatkötések alapértelmezett forrása.",
+          "A Binding Path propertyhez kapcsolja a megjelenítést.",
+          "A TwoWay binding mindkét irányban frissíthet.",
+          "A PropertyChanged esemény segít az UI frissítésében."
+        ],
+        "code": "<TextBox Text=\"{Binding Nev, UpdateSourceTrigger=PropertyChanged}\" />\n<TextBlock Text=\"{Binding Nev}\" />\n<!-- A DataContext egy Nev propertyvel rendelkező ViewModel -->",
+        "exercise": [
+          "Készíts névmezőt, amely azonnal tükrözi a megadott értéket.",
+          "Kapcsold egy INotifyPropertyChanged modellt."
+        ],
+        "quiz": {
+          "question": "A DataContext gyakran az adatkötések forrása.",
+          "options": [
+            "Igaz",
+            "Hamis"
+          ],
+          "answer": 0,
+          "explain": "Az állítás értékeléséhez figyeld a leckében bemutatott működési szabályt."
+        }
+      },
+      {
+        "id": "wpf-5",
+        "title": "MVVM, Commands és listák",
+        "level": "Haladó",
+        "minutes": 34,
+        "overview": "Az MVVM a Model, View és ViewModel felelősségeit választja szét. A parancsok lehetővé teszik, hogy a gomb eseményét ne közvetlen code-behind metódus kezelje.",
+        "concepts": [
+          "Model: üzleti adat; View: XAML; ViewModel: megjelenítési állapot és műveletek.",
+          "Az ICommand UI-parancsok kötésére használható.",
+          "Az ObservableCollection változásokat jelez listák esetén.",
+          "A ViewModel lehetőleg ne ismerjen konkrét ablakelemeket."
+        ],
+        "code": "<ListBox ItemsSource=\"{Binding Feladatok}\" DisplayMemberPath=\"Cim\" />\n<Button Content=\"Hozzáadás\" Command=\"{Binding HozzaadCommand}\" />\n<!-- ViewModel: ObservableCollection<Feladat> és ICommand -->",
+        "exercise": [
+          "Készíts MVVM teendőlista-programot ObservableCollection használatával.",
+          "Írj tesztet a ViewModel hozzáadás parancsára."
+        ],
+        "quiz": {
+          "question": "Az MVVM segít a WPF felület és logika szétválasztásában.",
+          "options": [
+            "Igaz",
+            "Hamis"
+          ],
+          "answer": 0,
+          "explain": "Az állítás értékeléséhez figyeld a leckében bemutatott működési szabályt."
+        }
+      },
+      {
+        "id": "wpf-6",
+        "title": "Stílusok, erőforrások és telepítés",
+        "level": "Haladó",
+        "minutes": 38,
+        "overview": "A WPF erőforrásszótáraiban központi színeket, ecseteket és stílusokat tárolhatsz. Kiadáskor fontos a megfelelő célkeretrendszer és a Windows telepítési környezet.",
+        "concepts": [
+          "A ResourceDictionary újrafelhasználható stílusokat tárol.",
+          "A StaticResource erőforrást használ.",
+          "A DataTemplate adatok megjelenését írja le.",
+          "A dotnet publish kiadási csomagot készíthet Windowsra."
+        ],
+        "code": "<Window.Resources>\n <Style TargetType=\"Button\">\n  <Setter Property=\"Margin\" Value=\"6\"/>\n  <Setter Property=\"Padding\" Value=\"14,8\"/>\n </Style>\n</Window.Resources>\n<!-- Windows parancs: dotnet publish -c Release -->",
+        "exercise": [
+          "Készíts egységes gombstílust és sötét témát.",
+          "Készíts Release buildet Windows alatt és próbáld másik gépen."
+        ],
+        "quiz": {
+          "question": "WPF esetén a valódi futtatáshoz Windows környezet szükséges.",
+          "options": [
+            "Igaz",
+            "Hamis"
+          ],
+          "answer": 0,
+          "explain": "Az állítás értékeléséhez figyeld a leckében bemutatott működési szabályt."
+        }
+      }
+    ]
+  },
+  {
+    "slug": "security",
+    "title": "Etikus hackelés és védelem",
+    "icon": "🛡️",
+    "category": "Kiberbiztonság",
+    "description": "Jogszerű, engedélyezett laborok, hálózatok, OWASP és védekezés.",
+    "prereqs": [
+      "alapok",
+      "html",
+      "javascript",
+      "python"
+    ],
+    "setup": "Csak saját vagy kifejezetten engedélyezett, elszigetelt laborban gyakorolj. Ajánlott: böngésző DevTools, Python, helyi tesztalkalmazások, OWASP dokumentáció.",
+    "runtime": "local",
+    "lessons": [
+      {
+        "id": "security-1",
+        "title": "Etikus hackelés: szabályok és labor",
+        "level": "Kezdő",
+        "minutes": 18,
+        "overview": "Etikus biztonsági vizsgálatot csak saját rendszeren vagy egyértelmű, dokumentált felhatalmazással végezz. A vizsgálat célja a hibák felelős feltárása és javítása, nem mások rendszereinek károsítása.",
+        "concepts": [
+          "A scope rögzíti, pontosan mi vizsgálható.",
+          "Az írásos engedély megadja az időszakot és korlátokat.",
+          "A saját, elkülönített labor ideális tanuláshoz.",
+          "Érzékeny adatok megjelenésekor állítsd le a tesztet és kövesd a bejelentési folyamatot."
+        ],
+        "code": "# Helyi laborötlet\n# 1. Két virtuális gép vagy helyi konténer\n# 2. Csak saját tesztalkalmazás\n# 3. Naplózás és visszaállítható pillanatkép\n# 4. Semmilyen külső célpont",
+        "exercise": [
+          "Írj mintascope dokumentumot saját laborra.",
+          "Sorold fel a tiltott tevékenységeket és az incidens esetén követendő lépéseket."
+        ],
+        "quiz": {
+          "question": "Mások szervereinek engedély nélküli tesztelése nem része az etikus hackelésnek.",
+          "options": [
+            "Igaz",
+            "Hamis"
+          ],
+          "answer": 0,
+          "explain": "Az állítás értékeléséhez figyeld a leckében bemutatott működési szabályt."
+        }
+      },
+      {
+        "id": "security-2",
+        "title": "Hálózati és HTTP-alapok",
+        "level": "Kezdő",
+        "minutes": 22,
+        "overview": "A webalkalmazások hálózati protokollokon kommunikálnak. A forgalom megértése segít a hibák diagnosztikájában és a védelem megtervezésében. Gyakorolj böngésző DevToolsban a saját oldalaiddal.",
+        "concepts": [
+          "Az IP-cím azonosítja a hálózati végpontot.",
+          "A TCP kapcsolatorientált adatátvitelt biztosít.",
+          "A HTTPS a HTTP kommunikációt TLS-sel védi.",
+          "A Cookie és a Session eltérő szerepet tölt be a webes munkamenetben."
+        ],
+        "code": "GET /profil HTTP/1.1\nHost: localhost\nCookie: session=teszt-ertek\n\n# Csak saját helyi alkalmazásból vett minta",
+        "exercise": [
+          "Nyisd meg saját weboldalad Network paneljét.",
+          "Azonosíts GET és POST kéréseket, és magyarázd el a státuszkódokat."
+        ],
+        "quiz": {
+          "question": "HTTPS esetén a webes adatátvitel TLS-sel védhető.",
+          "options": [
+            "Igaz",
+            "Hamis"
+          ],
+          "answer": 0,
+          "explain": "Az állítás értékeléséhez figyeld a leckében bemutatott működési szabályt."
+        }
+      },
+      {
+        "id": "security-3",
+        "title": "OWASP Top 10 és kockázatok",
+        "level": "Középhaladó",
+        "minutes": 26,
+        "overview": "Az OWASP Top 10 webalkalmazás-biztonsági kockázati területeket mutat be. Nem helyettesíti a teljes biztonsági programot, de jó belépési pont a megelőzési szabályokhoz.",
+        "concepts": [
+          "A hibás hozzáférés-ellenőrzés adatokat fedhet fel.",
+          "A kriptográfiai hibák érzékeny adatokat veszélyeztethetnek.",
+          "Az injection megelőzhető megfelelő adatkezeléssel és paraméterezéssel.",
+          "A naplózás és monitorozás hiánya késleltetheti az incidens felismerését."
+        ],
+        "code": "# Védekező ellenőrzőlista\n[ ] Jogosultságellenőrzés szerveroldalon\n[ ] Paraméterezett adatbázis-lekérdezések\n[ ] Adatok megfelelő kimeneti kódolása\n[ ] Titkok elkülönített tárolása\n[ ] Naplózás és biztonsági frissítések",
+        "exercise": [
+          "Készíts fenyegetésmodellt egy saját jegyzetalkalmazásról.",
+          "Sorold be a kockázatokat hatás és valószínűség alapján."
+        ],
+        "quiz": {
+          "question": "Az OWASP ajánlásai segíthetnek a webes kockázatok megértésében.",
+          "options": [
+            "Igaz",
+            "Hamis"
+          ],
+          "answer": 0,
+          "explain": "Az állítás értékeléséhez figyeld a leckében bemutatott működési szabályt."
+        }
+      },
+      {
+        "id": "security-4",
+        "title": "XSS és biztonságos megjelenítés",
+        "level": "Középhaladó",
+        "minutes": 30,
+        "overview": "Az XSS akkor fordulhat elő, ha az alkalmazás megbízhatatlan adatot nem megfelelően illeszt egy aktív webes kontextusba. A megelőzés alapja a megfelelő kimeneti kódolás és a veszélyes DOM API-k kerülése.",
+        "concepts": [
+          "A textContent szöveget jelenít meg HTML-értelmezés nélkül.",
+          "A nyers innerHTML veszélyes lehet nem megbízható adattal.",
+          "A szerveroldali sablonmotorok automatikus escape-elése fontos.",
+          "A Content Security Policy további védelmi réteget jelenthet."
+        ],
+        "code": "const felhasznaloiSzoveg = \"<b>Ez csak szöveg</b>\";\nconst el = document.querySelector(\"#eredmeny\");\nif (el) el.textContent = felhasznaloiSzoveg;\n// Nem használunk innerHTML-t a bemenet megjelenítésére.",
+        "exercise": [
+          "Készíts helyi oldalt szövegbevitellel.",
+          "Írasd ki a szöveget textContent segítségével és ellenőrizd, hogy a HTML-címkék szövegként jelennek meg."
+        ],
+        "quiz": {
+          "question": "A textContent közvetlen szövegbeillesztésre alkalmas.",
+          "options": [
+            "Igaz",
+            "Hamis"
+          ],
+          "answer": 0,
+          "explain": "Az állítás értékeléséhez figyeld a leckében bemutatott működési szabályt."
+        }
+      },
+      {
+        "id": "security-5",
+        "title": "SQL injection elleni védelem",
+        "level": "Haladó",
+        "minutes": 34,
+        "overview": "Ha felhasználói bemenetet SQL-szöveggé fűzünk össze, a lekérdezés jelentése megváltozhat. Paraméterezett lekérdezésnél az érték külön kerül átadásra, ami alapvető védelmi minta.",
+        "concepts": [
+          "Az SQL-szerkezetet ne állítsd elő megbízhatatlan szövegből.",
+          "Paraméterezett lekérdezésben az érték nem SQL-kódként értelmeződik.",
+          "Az adatbázis-felhasználónak a szükséges legkisebb jogosultságot add.",
+          "A hibák részleteit naplózd, de ne mutasd meg a végfelhasználónak."
+        ],
+        "code": "import sqlite3\ndb = sqlite3.connect(\":memory:\")\ndb.execute(\"CREATE TABLE users(name TEXT)\")\nnev = input(\"Keresett név: \")\nrows = db.execute(\"SELECT name FROM users WHERE name = ?\", (nev,)).fetchall()\nprint(rows)",
+        "exercise": [
+          "Hozz létre saját helyi SQLite-adatbázist.",
+          "Használj kizárólag paraméteres SELECT és INSERT lekérdezéseket."
+        ],
+        "quiz": {
+          "question": "A paraméterezett SQL csökkenti az SQL injection kockázatát.",
+          "options": [
+            "Igaz",
+            "Hamis"
+          ],
+          "answer": 0,
+          "explain": "Az állítás értékeléséhez figyeld a leckében bemutatott működési szabályt."
+        }
+      },
+      {
+        "id": "security-6",
+        "title": "Jelszavak, naplózás és felelős jelentés",
+        "level": "Haladó",
+        "minutes": 38,
+        "overview": "A védelem része a helyes hitelesítés, a naplózás és a biztonsági hibák felelős kommunikálása. A biztonság nem egyetlen eszköz, hanem folyamat.",
+        "concepts": [
+          "Jelszavakat megfelelő lassú, sózott jelszóhash formájában tárolj.",
+          "Többtényezős hitelesítés fontos extra védelem.",
+          "A napló ne tartalmazzon jelszót vagy hozzáférési tokent.",
+          "Jelentésben szerepeljen a hatás, reprodukálás biztonságos leírása, javasolt javítás és az engedélyezett scope."
+        ],
+        "code": "# Jelentésminta (saját labor)\nCím: Hiányzó hozzáférés-ellenőrzés a tesztoldalon\nScope: localhost próbaalkalmazás\nHatás: nem megfelelő hozzáférés-felügyelet\nJavaslat: szerveroldali jogosultságellenőrzés\nEllenőrzés: automatizált regressziós teszt",
+        "exercise": [
+          "Írj 1 oldalas biztonsági jelentést egy szándékosan hibás SAJÁT alkalmazásról.",
+          "Készíts javítási tervet és ellenőrzőlistát."
+        ],
+        "quiz": {
+          "question": "A biztonsági jelentésben fontos a világos hatásleírás és a javítási javaslat.",
+          "options": [
+            "Igaz",
+            "Hamis"
+          ],
+          "answer": 0,
+          "explain": "Az állítás értékeléséhez figyeld a leckében bemutatott működési szabályt."
+        }
+      }
+    ]
+  }
+]
