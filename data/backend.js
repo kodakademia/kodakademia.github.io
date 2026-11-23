@@ -185,10 +185,20 @@
   var nodeLessons = javascriptLessons.filter(function (lesson) { return lesson.id.startsWith('nodejs-'); });
   window.KA.extraLessons.javascript = javascriptLessons.filter(function (lesson) { return !lesson.id.startsWith('nodejs-'); });
   C([{
-    slug: 'nodejs', title: 'Backend JavaScript és REST API', icon: '🟩', category: 'Webfejlesztés',
+    slug: 'nodejs', title: 'Node.js API (server.js)', icon: '🟩', category: 'Webfejlesztés',
     description: 'Node.js szerver, HTTP, Express, JSON végpontok, adatbázis és API tesztelés.',
     prereqs: ['javascript'], runtime: 'local',
     setup: 'Telepítsd a Node.js-t. Terminálban ellenőrizd: node --version és npm --version. Hozz létre külön gyakorló mappát: mkdir api-gyakorlat, cd api-gyakorlat, npm init -y. A példák a saját gépeden futnak.',
     lessons: nodeLessons
   }]);
+  A('nodejs', [
+    L('nodejs-api-1', 'Önálló API server.js fájlban', 'Középhaladó', 24,
+      'A Node.js API-t külön server.js fájlban indítod. Ez a példa Express-szel GET és POST végpontot ad, és a futás idejére memóriában tartja a leckéket. A PHP/XAMPP példa ettől külön szerverprogram.',
+      ['A node server.js parancs indítja a JavaScript szervert.', 'A GET lekéri a listát, a POST új elemet vesz fel.', 'Az express.json() feldolgozza a JSON kéréstörzset és méretkorlátot állít.', 'A szerver újraindításakor a memóriában tárolt adatok elvesznek.'],
+      [{label:'Projekt indítása',lang:'bash',code:'mkdir node-api\ncd node-api\nnpm init -y\nnpm install express\n# Mentsd az alábbi kódot server.js néven\nnode server.js'},
+       {label:'server.js',lang:'js',code:'const express = require("express");\nconst app = express();\napp.use(express.json({ limit: "10kb" }));\n\nconst leckek = [{ id: 1, cim: "Első lecke" }];\napp.get("/api/leckek", (req, res) => res.json(leckek));\napp.post("/api/leckek", (req, res) => {\n  const cim = typeof req.body?.cim === "string" ? req.body.cim.trim() : "";\n  if (!cim) return res.status(400).json({ hiba: "Hiányzó cím" });\n  const lecke = { id: leckek.length + 1, cim };\n  leckek.push(lecke);\n  res.status(201).json(lecke);\n});\napp.use((err, req, res, next) => {\n  if (err.type === "entity.too.large") return res.status(413).json({ hiba: "Túl nagy kérés" });\n  if (err instanceof SyntaxError && err.status === 400) return res.status(400).json({ hiba: "Hibás JSON" });\n  res.status(500).json({ hiba: "Szerverhiba" });\n});\napp.listen(3000, () => console.log("http://localhost:3000"));'},
+       {label:'API kipróbálása (macOS/Linux/Git Bash)',lang:'bash',code:'curl -i http://localhost:3000/api/leckek\ncurl -i -X POST http://localhost:3000/api/leckek -H "Content-Type: application/json" -d "{\\\"cim\\\":\\\"Új lecke\\\"}"\ncurl -i http://localhost:3000/api/leckek'}],
+      ['Indítsd el a szervert, és ellenőrizd a GET válaszát.', 'Küldj POST kérést, majd kérd le újra a listát. Próbálj üres címet is.'],
+      ['Melyik parancs indítja ezt a Node.js API-t?', ['node server.js', 'php server.js', 'apache server.js'], 0, 'A server.js JavaScript fájlt a Node.js futtatja.'])
+  ]);
 })();
