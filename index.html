@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="hu">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="description" content="kodakademia: magyar nyelvű programozásoktatás kezdőknek és haladóknak, gyakorlatokkal és kvízekkel." />
+  <title>kodakademia – Tanulj programozni magyarul</title>
+  <link rel="stylesheet" href="styles.css" />
+  <script src="data.js" defer></script>
+  <script src="app.js" defer></script>
+</head>
+<body>
+  <div class="app-shell">
+    <aside class="sidebar" id="sidebar">
+      <a class="brand" href="#/" aria-label="kodakademia főoldal"><span class="brand-logo">&lt;/&gt;</span><span>kod<span class="gradient">akademia</span><small>Tanulóműhely</small></span></a>
+      <div class="side-heading">FELFEDEZÉS</div>
+      <nav aria-label="Fő navigáció">
+        <a href="#/" data-nav="home"><span>⌂</span> Áttekintés</a>
+        <a href="#/courses" data-nav="courses"><span>▦</span> Tananyagok</a>
+        <a href="#/path" data-nav="path"><span>◇</span> Tanulási útvonal</a>
+        <a href="#/bookmarks" data-nav="bookmarks"><span>☆</span> Könyvjelzők</a>
+        <a href="#/playground" data-nav="playground"><span>⌘</span> Kódjátszótér</a>
+      </nav>
+      <div class="side-heading">KURZUSOK</div>
+      <nav id="sideCourses" class="course-nav" aria-label="Kurzusok"></nav>
+      <div class="side-footer"><div class="mini-progress-label"><span>Összes haladás</span><strong id="globalPercent">0%</strong></div><div class="meter"><span id="globalBar"></span></div><p>Az előrehaladás ezen a készüléken mentődik.</p></div>
+    </aside>
+    <div class="main-column">
+      <header class="topbar"><div class="top-left"><button class="icon-btn hamburger" id="menuBtn" aria-label="Menü megnyitása">☰</button><span class="crumb" id="breadcrumb">Kezdőlap</span></div><div class="top-right"><span class="offline-pill">● Bejelentkezés nélkül</span><button class="btn btn-ghost small" id="exportBtn" title="Haladás mentése fájlba">↓ Haladás export</button></div></header>
+      <main id="app" tabindex="-1" aria-live="polite"></main>
+      <footer class="site-footer">kodakademia • Magyar tanulóplatform • A kódpéldákat saját környezetben teszteld. • Etikus biztonsági gyakorlás kizárólag engedéllyel.</footer>
+    </div>
+  </div>
+  <div id="toast" role="status" aria-live="polite"></div>
+</body>
+</html>
