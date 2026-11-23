@@ -11,7 +11,7 @@ window.KA.tracks = [
     id: 'web', title: 'Webfejlesztés', icon: '🌐',
     tagline: 'HTML, CSS, JavaScript, React – és a backend JavaScriptből.',
     desc: 'A böngészőtől a szerverig: felület, interakció, API és adatbázis.',
-    courses: ['alapok', 'terminal', 'html', 'css', 'javascript', 'typescript', 'jsx', 'react']
+    courses: ['alapok', 'terminal', 'html', 'css', 'javascript', 'typescript', 'jsx', 'react', 'nodejs', 'xampp']
   },
   {
     id: 'python', title: 'Python', icon: '🐍',
@@ -41,7 +41,7 @@ window.KA.tracks = [
 
 window.KA.courseTrack = {
   alapok: 'web', terminal: 'web', html: 'web', css: 'web', javascript: 'web',
-  typescript: 'web', jsx: 'web', react: 'web',
+  typescript: 'web', jsx: 'web', react: 'web', nodejs: 'web', xampp: 'web',
   python: 'python', 'python-web': 'python',
   php: 'php', 'php-api': 'php',
   security: 'security', 'security-lab': 'security',
