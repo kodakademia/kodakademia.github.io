@@ -181,4 +181,14 @@
       ['Készíts CRUD végpontokat a leckékhez.', 'Teszteld curl-lel a létrehozást, olvasást és törlést.'],
       ['Mi a CRUD?', ['Egy adatbázismotor', 'Létrehozás, olvasás, módosítás, törlés', 'Egy HTTP fejléc', 'Egy CSS keretrendszer'], 1, 'A CRUD a négy alap adatművelet rövidítése.'])
   ]);
+  var javascriptLessons = window.KA.extraLessons.javascript;
+  var nodeLessons = javascriptLessons.filter(function (lesson) { return lesson.id.startsWith('nodejs-'); });
+  window.KA.extraLessons.javascript = javascriptLessons.filter(function (lesson) { return !lesson.id.startsWith('nodejs-'); });
+  C([{
+    slug: 'nodejs', title: 'Backend JavaScript és REST API', icon: '🟩', category: 'Webfejlesztés',
+    description: 'Node.js szerver, HTTP, Express, JSON végpontok, adatbázis és API tesztelés.',
+    prereqs: ['javascript'], runtime: 'local',
+    setup: 'Telepítsd a Node.js-t. Terminálban ellenőrizd: node --version és npm --version. Hozz létre külön gyakorló mappát: mkdir api-gyakorlat, cd api-gyakorlat, npm init -y. A példák a saját gépeden futnak.',
+    lessons: nodeLessons
+  }]);
 })();
