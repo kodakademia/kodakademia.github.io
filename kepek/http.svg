@@ -1,0 +1,20 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 720 280" role="img" aria-label="HTTP kérés és válasz folyamata böngésző és szerver között">
+  <rect width="720" height="280" rx="14" fill="#0b1426"/>
+  <rect x="40" y="96" width="180" height="88" rx="12" fill="#1a2642" stroke="#4d7d9b"/>
+  <text x="130" y="132" text-anchor="middle" font-family="Inter,sans-serif" font-size="15" fill="#eff4ff">Böngésző / kliens</text>
+  <text x="130" y="156" text-anchor="middle" font-family="Inter,sans-serif" font-size="12" fill="#99aac7">fetch, űrlap, link</text>
+  <rect x="500" y="96" width="180" height="88" rx="12" fill="#1a2642" stroke="#655cb0"/>
+  <text x="590" y="132" text-anchor="middle" font-family="Inter,sans-serif" font-size="15" fill="#eff4ff">Szerver</text>
+  <text x="590" y="156" text-anchor="middle" font-family="Inter,sans-serif" font-size="12" fill="#99aac7">Node, PHP, Python</text>
+  <g stroke-linecap="round">
+    <line x1="220" y1="120" x2="498" y2="120" stroke="#55def1" stroke-width="2" marker-end="url(#a)"/>
+    <line x1="500" y1="166" x2="222" y2="166" stroke="#64e2a3" stroke-width="2" marker-end="url(#b)"/>
+  </g>
+  <defs>
+    <marker id="a" orient="auto" markerWidth="10" markerHeight="10" refX="8" refY="3"><path d="M0,0 L8,3 L0,6 z" fill="#55def1"/></marker>
+    <marker id="b" orient="auto" markerWidth="10" markerHeight="10" refX="8" refY="3"><path d="M0,0 L8,3 L0,6 z" fill="#64e2a3"/></marker>
+  </defs>
+  <text x="360" y="106" text-anchor="middle" font-family="ui-monospace,monospace" font-size="12" fill="#55def1">GET /api/leckek → fejlécek</text>
+  <text x="360" y="190" text-anchor="middle" font-family="ui-monospace,monospace" font-size="12" fill="#64e2a3">200 OK + JSON törzs</text>
+  <text x="360" y="232" text-anchor="middle" font-family="Inter,sans-serif" font-size="12" fill="#8299bc">A szerver dönt az adatról és a státuszkódról; a kliens megjeleníti.</text>
+</svg>

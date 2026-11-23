@@ -1,0 +1,16 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 720 300" role="img" aria-label="Terminál ablak példa parancsokkal">
+  <rect width="720" height="300" rx="14" fill="#0b1426"/>
+  <rect width="720" height="34" rx="14" fill="#182135"/>
+  <circle cx="22" cy="17" r="5" fill="#ff858e"/><circle cx="40" cy="17" r="5" fill="#efcba6"/><circle cx="58" cy="17" r="5" fill="#64e2a3"/>
+  <text x="80" y="22" font-family="ui-monospace,monospace" font-size="12" fill="#8299bc">~/projekt — bash</text>
+  <g font-family="ui-monospace,monospace" font-size="14">
+    <text x="22" y="70" fill="#64e2a3">$ pwd</text><text x="90" y="70" fill="#b7c8e1">/home/anna/projekt</text>
+    <text x="22" y="100" fill="#64e2a3">$ ls</text><text x="90" y="100" fill="#b7c8e1">index.html  app.js  package.json</text>
+    <text x="22" y="130" fill="#64e2a3">$ npm install dotenv</text><text x="215" y="130" fill="#99aac7">added 1 package</text>
+    <text x="22" y="160" fill="#64e2a3">$ node index.js</text><text x="175" y="160" fill="#55def1">Szerver fut: http://localhost:8000</text>
+    <text x="22" y="196" fill="#64e2a3">$ cat .env</text>
+    <text x="22" y="222" fill="#b7c8e1">PORT=8000</text>
+    <text x="22" y="244" fill="#b7c8e1">DATABASE_URL=postgres://...</text>
+    <text x="22" y="272" fill="#7f94b2"># a .env soha nem kerül Gitbe</text>
+  </g>
+</svg>
