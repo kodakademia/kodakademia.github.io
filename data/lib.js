@@ -9,8 +9,8 @@ window.KA.VERSION = '2026-11-23.5';
 window.KA.tracks = [
   {
     id: 'web', title: 'Webfejlesztés', icon: '🌐',
-    tagline: 'HTML, CSS, JavaScript, React – és a backend JavaScriptből.',
-    desc: 'A böngészőtől a szerverig: felület, interakció, API és adatbázis.',
+    tagline: 'Frontend: HTML, CSS, JavaScript, React. Backend: külön Node.js és PHP API.',
+    desc: 'A böngészős felülettől a külön futó Node.js és PHP szerverekig.',
     courses: ['alapok', 'terminal', 'html', 'css', 'javascript', 'typescript', 'jsx', 'react', 'nodejs', 'xampp']
   },
   {
