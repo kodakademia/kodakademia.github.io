@@ -88,7 +88,99 @@ function path(){nav('path');breadcrumb('Tanulási útvonal');let plans=[['Webfej
 function bookmarks(){nav('bookmarks');breadcrumb('Könyvjelzők');let links=state.bookmarks.flatMap(k=>{let [slug,id]=k.split('/');let c=courseOf(slug),l=c&&c.lessons.find(x=>x.id===id);return l?[`<a class="lesson-link" href="#/lesson/${slug}/${id}"><span class="tick">★</span><span>${esc(courseTitle(c))} / ${esc(l.title)}</span><small>Megnyitás →</small></a>`]:[]});app.innerHTML=`<p class="eyebrow">MENTETT LECKÉK</p><h1 class="page-title">Könyvjelzők</h1><p class="muted">Azokat a leckéket találod itt, amelyeket későbbre elmentettél.</p><section class="module">${links.length?links.join(''):'<p class="muted" style="padding:20px">Még nincs könyvjelződ. Egy leckén belül kattints a csillagra.</p>'}</section>`;}
 
 const templates={html:'<h1>Helló, KódAkadémia!</h1>\n<p>Írd át a szöveget, és nézd meg a változást.</p>\n<button id="gomb">Kattints!</button>\n<p id="eredmeny"></p>',css:'body { font-family: system-ui; padding: 24px; color: #223; }\nh1 { color: rebeccapurple; }\nbutton { background: #754ced; border: 0; color: white; border-radius: 8px; padding: 12px 18px; cursor: pointer; }',js:'document.querySelector("#gomb").addEventListener("click", () => {\n  document.querySelector("#eredmeny").textContent = "Sikerült! 🎉";\n});'};
-function playground(){nav('playground');breadcrumb('Kódjátszótér');app.innerHTML=`<p class="eyebrow">PRÓBÁLD KI</p><h1 class="page-title">HTML • CSS • JavaScript játszótér</h1><p class="muted">Szerkeszd a fájlokat, majd nyomd meg a Futtatás gombot! A példa a böngésződön belül, elkülönített előnézetben fut. Más programnyelvekhez a kurzusok helyi futtatási útmutatót adnak.</p><div class="actions"><button class="btn btn-primary" id="runBtn">▶ Futtatás</button><button class="btn btn-ghost" id="resetEditor">↺ Példa visszaállítása</button></div><div class="warning" style="margin-top:15px">Csak saját vagy megbízható kódot illessz be. Az előnézet elkülönített iframe-ben fut, de ez nem általános célú biztonsági elemzőkörnyezet.</div><div class="editor-grid"><div class="playgrid"><section class="editor-panel"><h3>🌐 HTML</h3><textarea spellcheck="false" id="editorHtml" aria-label="HTML kód"></textarea></section><section class="editor-panel"><h3>🎨 CSS</h3><textarea spellcheck="false" id="editorCss" aria-label="CSS kód"></textarea></section><section class="editor-panel"><h3>⚡ JavaScript</h3><textarea spellcheck="false" id="editorJs" aria-label="JavaScript kód"></textarea></section></div><section class="editor-panel"><h3>👁 Élő előnézet</h3><iframe id="previewFrame" sandbox="allow-scripts" title="A HTML CSS JavaScript kód előnézete"></iframe></section></div>`;['html','css','js'].forEach(x=>$('#editor'+x.charAt(0).toUpperCase()+x.slice(1)).value=templates[x]);function run(){let html=$('#editorHtml').value,css=$('#editorCss').value,js=$('#editorJs').value;$('#previewFrame').srcdoc='<!doctype html><html lang="hu"><head><meta charset="utf-8"><style>'+css.replace(/<\/style/gi,'<\\/style')+'</style></head><body>'+html+'<script>'+js.replace(/<\/script/gi,'<\\/script')+'<\/script></body></html>'}$('#runBtn').addEventListener('click',run);$('#resetEditor').addEventListener('click',()=>{['html','css','js'].forEach(x=>$('#editor'+x.charAt(0).toUpperCase()+x.slice(1)).value=templates[x]);run()});run()}
+const consoleTemplates = {
+  python: 'for nev in ["Anna", "Bence"]:\n    print("Szia,", nev)',
+  c: '#include <stdio.h>\n\nint main() {\n    for (int i = 1; i <= 3; i++) {\n        printf("%d\\n", i);\n    }\n    return 0;\n}'
+};
+let stopPlayground = () => {};
+function playground() {
+  nav('playground');
+  breadcrumb('Kódjátszótér');
+  const drafts = {...templates, ...consoleTemplates};
+  const inputs = {python: '', c: ''};
+  app.innerHTML = `<h1 class="page-title">Kódjátszótér</h1>
+    <label for="playLanguage">Nyelv</label>
+    <select id="playLanguage" class="btn btn-ghost">
+      <option value="web">Web (HTML, CSS, JavaScript)</option>
+      <option value="python">Python 3</option><option value="c">C (alapok)</option>
+    </select>
+    <p id="playHint" class="muted"></p>
+    <div class="actions"><button class="btn btn-primary" id="runBtn">▶ Futtatás</button>
+    <button class="btn btn-ghost" id="stopBtn" hidden>Leállítás</button>
+    <button class="btn btn-ghost" id="resetEditor">Példa visszaállítása</button></div>
+    <div id="workspace"></div>`;
+  const selector = $('#playLanguage');
+  const editors = {html:'editorHtml', css:'editorCss', js:'editorJs'};
+  let language = 'web', worker, timer;
+  function stop() {
+    clearTimeout(timer);
+    if (worker) worker.terminate();
+    worker = null;
+    $('#stopBtn').hidden = true;
+  }
+  stopPlayground = stop;
+  function draw() {
+    if (language === 'web') {
+      $('#playHint').textContent = 'Szerkeszd a három fájlt, majd futtasd az oldalt az elkülönített előnézetben.';
+      $('#workspace').innerHTML = `<div class="editor-grid"><div class="playgrid"><section class="editor-panel"><h3>🌐 HTML</h3><textarea spellcheck="false" id="editorHtml" aria-label="HTML kód"></textarea></section><section class="editor-panel"><h3>🎨 CSS</h3><textarea spellcheck="false" id="editorCss" aria-label="CSS kód"></textarea></section><section class="editor-panel"><h3>⚡ JavaScript</h3><textarea spellcheck="false" id="editorJs" aria-label="JavaScript kód"></textarea></section></div><section class="editor-panel"><h3>👁 Élő előnézet</h3><iframe id="previewFrame" sandbox="allow-scripts" title="A HTML CSS JavaScript kód előnézete"></iframe></section></div>`;
+      for (const [key,id] of Object.entries(editors)) $('#'+id).value = drafts[key];
+      run();
+    } else {
+      const python = language === 'python';
+      $('#playHint').textContent = python ? 'Python 3 alapgyakorlatok Skulpt értelmezővel. Az input() soronként olvas a bemenetből.' : 'C alapgyakorlatok JSCPP értelmezővel. A teljes C szabvány és a külső könyvtárak helyi fordítót igényelnek.';
+      $('#workspace').innerHTML = `<div class="editor-grid"><section class="editor-panel"><h3><label for="sourceCode">${python?'main.py':'main.c'}</label></h3>
+      <textarea id="sourceCode" spellcheck="false"></textarea><h3><label for="programInput">Bemenet</label></h3><textarea id="programInput" rows="3"></textarea></section>
+      <section class="editor-panel"><h3>Kimenet</h3><pre id="programOutput" role="status" style="white-space:pre-wrap;overflow-wrap:anywhere"></pre></section></div>`;
+      $('#sourceCode').value = drafts[language];
+      $('#programInput').value = inputs[language];
+    }
+  }
+  function run() {
+    if (language === 'web') {
+      const html = $('#editorHtml').value, css = $('#editorCss').value, js = $('#editorJs').value;
+      $('#previewFrame').srcdoc = '<!doctype html><meta charset="utf-8"><style>'+css.replace(/<\/style/gi,'<\\/style')+'</style>'+html+'<script>'+js.replace(/<\/script/gi,'<\\/script')+'</script>';
+      return;
+    }
+    stop();
+    const output = $('#programOutput');
+    output.textContent = 'Értelmező betöltése…';
+    $('#stopBtn').hidden = false;
+    worker = new Worker('language-worker.js?v=1');
+    timer = setTimeout(() => {stop(); output.textContent = 'A betöltés túllépte az időkeretet.'}, 45000);
+    worker.onmessage = ({data}) => {
+      if (data.ready) {
+        clearTimeout(timer);
+        output.textContent = 'Futás…';
+        timer = setTimeout(() => {stop(); output.textContent = 'A program túllépte az 5 másodperces futásidőt.'}, 5000);
+      } else {
+        output.textContent = data.result || 'A program kimenet nélkül fejeződött be.';
+        stop();
+      }
+    };
+    worker.onerror = () => {stop(); output.textContent = 'Az értelmező betöltése vagy futtatása sikertelen.'};
+    worker.postMessage({language, code:$('#sourceCode').value, input:$('#programInput').value});
+  }
+  selector.onchange = () => {
+    stop();
+    if (language === 'web') {
+      for (const [key,id] of Object.entries(editors)) drafts[key] = $('#'+id).value;
+    } else {
+      drafts[language] = $('#sourceCode').value;
+      inputs[language] = $('#programInput').value;
+    }
+    language = selector.value;
+    draw();
+  };
+  $('#runBtn').onclick = run;
+  $('#stopBtn').onclick = () => {stop(); $('#programOutput').textContent = 'Leállítva.'};
+  $('#resetEditor').onclick = () => {
+    stop();
+    if (language === 'web') Object.assign(drafts, templates);
+    else {drafts[language] = consoleTemplates[language]; inputs[language] = ''}
+    draw();
+  };
+  draw();
+}
 
 /* ---------------- AI tanulótárs ---------------- */
 const STOP=new Set('a az egy és vagy de hogy nem is van vannak volt lesz mit mi miert hogyan hogyan kell kellene tud szamit nem nekem neki ez ezt ezek olyan mint nagyon mert akkor ha akar csak meg tudom tudok legyen lehessen valami valamit hozza ki be fel le el ra rol tol ig kezd kezdeni kezdd tanul tanulni tanulok magyar programozas programozni segitseg kerdes valasz mit csinal mit jelent'.split(' '));
@@ -138,7 +230,7 @@ const seed=window.KA_AI_SEED;if(seed){window.KA_AI_SEED='';setTimeout(()=>ask(se
 function notFound(){nav('');breadcrumb('Nem található');app.innerHTML='<h1 class="page-title">Ez az oldal nem található</h1><a class="btn btn-primary" href="#/">Vissza a főoldalra</a>'}
 function copy(t){if(navigator.clipboard&&window.isSecureContext){navigator.clipboard.writeText(t).then(()=>toast('Kód kimásolva')).catch(()=>fallbackCopy(t))}else fallbackCopy(t)}
 function fallbackCopy(t){let el=document.createElement('textarea');el.value=t;document.body.appendChild(el);el.select();try{document.execCommand('copy');toast('Kód kimásolva')}catch{toast('Jelöld ki és másold a kódot!')}el.remove()}
-function route(){let parts=decodeURIComponent(location.hash.replace(/^#\/?/,'')).split('/').filter(Boolean);if(parts[0]==='lesson'&&parts[1]==='javascript'&&/^nodejs-\d+$/.test(parts[2]||'')){location.replace('#/lesson/nodejs/'+parts[2]);return}if(!parts.length)home();else if(parts[0]==='courses')catalog();else if(parts[0]==='track')trackPage(parts[1]);else if(parts[0]==='course')detail(parts[1]);else if(parts[0]==='lesson')lesson(parts[1],parts[2]);else if(parts[0]==='path')path();else if(parts[0]==='bookmarks')bookmarks();else if(parts[0]==='playground')playground();else if(parts[0]==='ai')ai();else notFound();window.scrollTo({top:0,behavior:'instant'});$('#sidebar').classList.remove('open');}
+function route(){stopPlayground();stopPlayground=()=>{};let parts=decodeURIComponent(location.hash.replace(/^#\/?/,'')).split('/').filter(Boolean);if(parts[0]==='lesson'&&parts[1]==='javascript'&&/^nodejs-\d+$/.test(parts[2]||'')){location.replace('#/lesson/nodejs/'+parts[2]);return}if(!parts.length)home();else if(parts[0]==='courses')catalog();else if(parts[0]==='track')trackPage(parts[1]);else if(parts[0]==='course')detail(parts[1]);else if(parts[0]==='lesson')lesson(parts[1],parts[2]);else if(parts[0]==='path')path();else if(parts[0]==='bookmarks')bookmarks();else if(parts[0]==='playground')playground();else if(parts[0]==='ai')ai();else notFound();window.scrollTo({top:0,behavior:'instant'});$('#sidebar').classList.remove('open');}
 $('#menuBtn').addEventListener('click',()=>$('#sidebar').classList.toggle('open'));
 document.addEventListener('click',e=>{const a=e.target.closest('[data-ask]');if(a){e.preventDefault();window.KA_AI_SEED=a.dataset.ask;if(location.hash==='#/ai')ai();else location.hash='#/ai'}});
 document.addEventListener('click',e=>{let b=e.target.closest('[data-open-branch]');if(!b)return;e.preventDefault();trackFilter=b.dataset.openBranch;if(location.hash==='#/courses')catalog();else location.hash='#/courses';});
