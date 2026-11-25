@@ -1,6 +1,6 @@
 function createPracticeLabs(select) {
   const engines = {
-    javascript:['JavaScript','javascript'],typescript:['TypeScript','typescript'],
+    java:['Java','java'], javascript:['JavaScript','javascript'],typescript:['TypeScript','typescript'],
     react:['JSX és React','react'],node:['Node.js (server.js)','nodejs'],
     mysql:['MySQL – XAMPP SQL-gyakorlatok','mysql'],php:['PHP','php'],csharp:['C# és C# Console App','csharp'],bash:['Parancssor (Bash)','bash'],other:['További nyelvek (OneCompiler)','']
   };
