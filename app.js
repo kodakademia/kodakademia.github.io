@@ -110,9 +110,13 @@ function playground() {
     <button class="btn btn-ghost" id="resetEditor">Példa visszaállítása</button></div>
     <div id="workspace"></div>`;
   const selector = $('#playLanguage');
+  const labs = createPracticeLabs(selector);
+  const labHost = document.createElement('div');
+  $('#workspace').after(labHost);
   const editors = {html:'editorHtml', css:'editorCss', js:'editorJs'};
   let language = 'web', worker, timer;
   function stop() {
+    labs.stop();
     clearTimeout(timer);
     if (worker) worker.terminate();
     worker = null;
@@ -120,6 +124,16 @@ function playground() {
   }
   stopPlayground = stop;
   function draw() {
+    const lab = labs.has(language);
+    $('#runBtn').parentElement.hidden = lab;
+    $('#runBtn').parentElement.style.display = lab ? 'none' : '';
+    $('#workspace').hidden = lab;
+    labHost.hidden = !lab;
+    if (lab) {
+      $('#playHint').textContent = '';
+      labs.show(language, labHost);
+      return;
+    }
     if (language === 'web') {
       $('#playHint').textContent = 'Szerkeszd a három fájlt, majd futtasd az oldalt az elkülönített előnézetben.';
       $('#workspace').innerHTML = `<div class="editor-grid"><div class="playgrid"><section class="editor-panel"><h3>🌐 HTML</h3><textarea spellcheck="false" id="editorHtml" aria-label="HTML kód"></textarea></section><section class="editor-panel"><h3>🎨 CSS</h3><textarea spellcheck="false" id="editorCss" aria-label="CSS kód"></textarea></section><section class="editor-panel"><h3>⚡ JavaScript</h3><textarea spellcheck="false" id="editorJs" aria-label="JavaScript kód"></textarea></section></div><section class="editor-panel"><h3>👁 Élő előnézet</h3><iframe id="previewFrame" sandbox="allow-scripts" title="A HTML CSS JavaScript kód előnézete"></iframe></section></div>`;
@@ -164,7 +178,7 @@ function playground() {
     stop();
     if (language === 'web') {
       for (const [key,id] of Object.entries(editors)) drafts[key] = $('#'+id).value;
-    } else {
+    } else if (!labs.has(language)) {
       drafts[language] = $('#sourceCode').value;
       inputs[language] = $('#programInput').value;
     }
